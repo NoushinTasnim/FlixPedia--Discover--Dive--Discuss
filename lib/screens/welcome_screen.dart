@@ -1,8 +1,8 @@
-import 'package:flix_pedia/constants.dart';
+import 'package:flix_pedia/utils/constants.dart';
 import 'package:flix_pedia/widgets/welcome_screen_widgets/image_widget.dart';
 import 'package:flix_pedia/widgets/welcome_screen_widgets/text_widgets.dart';
 import 'package:flutter/material.dart';
-import '../widgets/welcome_screen_widgets/go_button.dart';
+import '../widgets/Commons/purple_bg_button_small.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -10,19 +10,22 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: Theme.of(context).canvasColor,
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         padding: EdgeInsets.all(kPadding),
         decoration: kBoxBackgroundDecoration,
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               WelcomeScreenImage(),
               WelcomeScreenTextWidgets(),
-              WelcomeScreenGoButton()
+              PurpleBackgroundButtonSmall(
+                text: 'Let\'s Go',
+              )
             ],
           ),
         ),

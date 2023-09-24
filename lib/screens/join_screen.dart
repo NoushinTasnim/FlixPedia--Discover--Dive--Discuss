@@ -1,73 +1,130 @@
-import 'package:flix_pedia/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flix_pedia/screens/home_screen.dart';
+import 'package:flix_pedia/screens/sign_in_screen.dart';
+import 'package:flix_pedia/utils/constants.dart';
+import 'package:flix_pedia/widgets/auth_screens/alternate_auth_question.dart';
+import 'package:flix_pedia/widgets/auth_screens/auth_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
-class JoinScreen extends StatelessWidget {
+import '../widgets/Commons/purple_bg_button_large.dart';
+import '../widgets/auth_screens/text_field_widgets.dart';
+
+class JoinScreen extends StatefulWidget {
+
   const JoinScreen({super.key});
+
+  @override
+  State<JoinScreen> createState() => _JoinScreenState();
+}
+
+class _JoinScreenState extends State<JoinScreen> {
+  bool _isPasswordVisible = false;
+  String email = 'abc@gmail.com', password = '1234';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      extendBodyBehindAppBar: true,
+      backgroundColor: Theme.of(context).canvasColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(kPadding),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/join_screen_bg.png'),
-            fit: BoxFit.cover
-          )
+        height: double.infinity,
+        padding: EdgeInsets.only(
+          top: kPadding*5,
+          left: kPadding*2,
+          right: kPadding*2,
+          bottom: kPadding
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(kPadding),
-              child: Image(
-                image: AssetImage('assets/images/movie.png'),
+        decoration:kBoxBackgroundDecoration,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  'Let\'s Get\nStarted!',
+                  style: Theme.of(context).textTheme.titleMedium
               ),
-            ),
-            SizedBox(
-              height: kPadding,
-            ),
-            Text(
-              'Discover',
-              style: Theme.of(context).textTheme.titleMedium
-            ),
-            Text(
-                'New Movies',
-                style: Theme.of(context).textTheme.titleMedium
-            ),
-            SizedBox(
-              height: kPadding,
-            ),
-            Text(
-                'Explore all the most exciting movies \nbased on your interests and talk about them',
-                style: Theme.of(context).textTheme.titleSmall,
-                textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: kPadding*4,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: kPadding/2,
-                horizontal: kPadding*2,
+              SizedBox(
+                height: kPadding*2,
               ),
-              decoration: BoxDecoration(
-                color: kSecondaryColor,
-                borderRadius: BorderRadius.circular(kPadding),
-                border: Border.all(
-                    color: kSecondaryColor,
-                    strokeAlign: BorderSide.strokeAlignInside
+              TextFieldWidget(
+                text: 'Username',
+                iconData: Icons.person_outline,
+              ),
+              SizedBox(
+                height: kPadding/2,
+              ),
+              TextFieldWidget(
+                text: 'Email',
+                iconData: Icons.mail_outline,
+              ),
+              SizedBox(
+                height: kPadding/2,
+              ),
+              TextFieldWidget(
+                iconData: Icons.lock_outline,
+                text: 'Password',
+                obscureText: true,
+              ),
+              SizedBox(
+                height: kPadding,
+              ),
+              PurpleBackgroundButtonLarge(
+                text: 'Create Account',
+                onTap: () async {
+                    try {
+                      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: email, // Replace with your email input field value
+                        password: password, // Replace with your password input field value
+                      );
+                      // User successfully created. You can navigate to the next screen or perform other actions here.
+                      print('User signed up: ${userCredential.user}');
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return MainScreen();
+                      }));
+                    } catch (e) {
+                      // Handle any errors that occur during sign-up (e.g., email already exists).
+                      print('Error during sign-up: $e');
+                    }
+                },
+              ),
+              SizedBox(
+                height: kPadding*2,
+              ),
+              AuthDividerWidget(),
+              SizedBox(
+                height: kPadding,
+              ),
+              Center(
+                child: Container(
+                  padding: EdgeInsets.all(kPadding),
+                  decoration: kBoxDecorationWhiteBackground,
+                  child: SvgPicture.asset(
+                    'assets/icons/google.svg',
+                  ),
                 ),
               ),
-              child: Text(
-                'Let\'s Go',
-                style: Theme.of(context).textTheme.labelMedium,
+              SizedBox(
+                height: kPadding,
               ),
-            )
-          ],
+              AlternateAuthWidget(
+                text1: 'Already A Member?',
+                text2: 'Login',
+                onTap: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return LoginScreen();
+                      }));
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
