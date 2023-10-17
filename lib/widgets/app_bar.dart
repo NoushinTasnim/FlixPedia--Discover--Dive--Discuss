@@ -3,8 +3,11 @@ import 'package:provider/provider.dart';
 import '../model/my_theme_model.dart';
 import '../utils/constants.dart';
 
-AppBar buildAppBar(BuildContext context) {
+AppBar buildAppBar(BuildContext context, String text) {
   return AppBar(
+    title: Text(
+        text,
+    ),
     leading: Padding(
       padding: const EdgeInsets.symmetric(horizontal: kPadding),
       child: IconButton(
