@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flix_pedia/firebase_options.dart';
 import 'package:flix_pedia/screens/welcome_screen.dart';
 import 'package:flix_pedia/utils/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,9 @@ import 'model/my_theme_model.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(MyApp());
 }
 

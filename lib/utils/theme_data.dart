@@ -16,9 +16,9 @@ ThemeData themeData(BuildContext context) {
       ),
       elevation: 0,
       titleTextStyle: GoogleFonts.inter(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: 24
+          color: kDarkColor,
+          fontSize: 24,
+          fontWeight: FontWeight.bold
       ),
     ),
     iconTheme: IconThemeData(
@@ -89,9 +89,9 @@ ThemeData darkThemeData(BuildContext context) {
       ),
       elevation: 0,
       titleTextStyle: GoogleFonts.inter(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: 24
+          color: kDarkTextLightColor,
+          fontSize: 24,
+          fontWeight: FontWeight.bold
       ),
     ),
     iconTheme: IconThemeData(

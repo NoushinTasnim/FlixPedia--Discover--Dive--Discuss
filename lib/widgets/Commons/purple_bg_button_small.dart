@@ -15,7 +15,7 @@ class PurpleBackgroundButtonSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(context,
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
               return JoinScreen();
             }));

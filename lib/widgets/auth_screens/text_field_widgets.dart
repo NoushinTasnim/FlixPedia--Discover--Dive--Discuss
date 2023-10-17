@@ -4,12 +4,16 @@ class TextFieldWidget extends StatefulWidget {
   IconData iconData;
   String text;
   final bool obscureText;
+  TextEditingController textInputController;
+  String errorText;
 
   TextFieldWidget({
-    super.key,
+    Key? key,
     required this.text,
     required this.iconData,
-    this.obscureText = false
+    this.obscureText = false,
+    required this.textInputController,
+    this.errorText = '',
   });
 
   @override
@@ -17,15 +21,19 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = false; // Track whether there is an error
 
   @override
   Widget build(BuildContext context) {
+    bool hasError = widget.errorText.isNotEmpty;
     return TextField(
       style: Theme.of(context).textTheme.titleSmall,
       cursorColor: Colors.black,
+      controller: widget.textInputController,
       obscureText: widget.obscureText ? !_isPasswordVisible : false,
       decoration: InputDecoration(
+        labelText: widget.text,
+        labelStyle: Theme.of(context).textTheme.bodySmall,
         filled: true,
         fillColor: Colors.white54,
         prefixIcon: Icon(
@@ -34,7 +42,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           size: 20,
         ),
         suffixIcon: widget.obscureText
-          ? IconButton(
+            ? IconButton(
           icon: Icon(
             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
             color: Colors.grey,
@@ -45,13 +53,21 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               _isPasswordVisible = !_isPasswordVisible;
             });
           },
-        ): null,
+        )
+            : null,
         hintText: widget.text,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red), // Set the error border color to red
+          borderRadius: BorderRadius.circular(10),
+        ),
       ),
       onChanged: (val) {
+        setState(() {
+          hasError = widget.errorText.isNotEmpty; // Set hasError based on errorText
+        });
       },
     );
   }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 const kPadding = 20.0;
 const kPrimaryColor = Color(0xFFB5EEFF);
-const kSecondaryColor = Color(0xFF86328C);
+const kSecondaryColor = Color(0xFF1F3344);
 
 const kDarkColor = Color(0xA8160E56);
 const kDarkSecondaryColor = Colors.redAccent;

@@ -11,22 +11,26 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: EdgeInsets.all(kPadding),
-        decoration: kBoxBackgroundDecoration,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              WelcomeScreenImage(),
-              WelcomeScreenTextWidgets(),
-              PurpleBackgroundButtonSmall(
-                text: 'Let\'s Go',
-              )
-            ],
+      body: Center(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          padding: EdgeInsets.all(kPadding),
+          decoration: kBoxBackgroundDecoration,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  WelcomeScreenImage(),
+                  WelcomeScreenTextWidgets(),
+                  PurpleBackgroundButtonSmall(
+                    text: 'Let\'s Go',
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
