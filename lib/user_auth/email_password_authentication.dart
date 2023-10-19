@@ -5,11 +5,18 @@ import 'authentication_strategy.dart';
 class EmailPasswordAuthentication implements AuthenticationStrategy{
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String _username = '';
   String _email = '';
   String _password = '';
 
 
-  EmailPasswordAuthentication(this._email, this._password);
+  EmailPasswordAuthentication(this._username, this._email, this._password);
+
+  String get username => _username;
+
+  set username(String value) {
+    _username = value;
+  }
 
   String get email => _email;
 
@@ -24,7 +31,11 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
   }
 
   @override
-  Future<AuthResult> signUp(String email, String password) async {
+  Future<AuthResult> signUp() async {
+    if(username.isEmpty)
+    {
+      return AuthResult(user: null, errorMessage: 'Please Enter Name');
+    }
     if(email.isEmpty)
     {
       return AuthResult(user: null, errorMessage: 'Please Enter Email');
@@ -38,7 +49,14 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
         email: email,
         password: password,
       );
-      return AuthResult(user: userCredential.user, errorMessage: null);
+      User? user = userCredential.user;
+      await user?.updateDisplayName(username);
+      await user?.reload();
+
+      User? latestUser = FirebaseAuth.instance.currentUser;
+      print('${latestUser?.displayName}');
+      print(userCredential.user);
+      return AuthResult(user: latestUser, errorMessage: null);
     } on FirebaseAuthException catch (e) {
       return handleAuthException(e);
     } catch (e) {
@@ -72,5 +90,10 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
   @override
   Future<void> signOut() async {
     _auth.signOut();
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await _auth.currentUser!.delete();
   }
 }

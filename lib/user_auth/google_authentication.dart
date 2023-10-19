@@ -31,14 +31,19 @@ class GoogleAuthentication implements AuthenticationStrategy {
   }
 
   @override
-  Future<AuthResult> signUp(String email, String password) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<AuthResult> signUp() {
+    return signIn();
   }
 
   @override
   Future<void> signOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    await _auth.currentUser!.delete();
+    print(_auth.currentUser);
   }
 }
