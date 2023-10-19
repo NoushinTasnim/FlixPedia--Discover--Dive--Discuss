@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'auth_result.dart';
-import 'authentication_strategy.dart';
+import '../../auth_exception_handler.dart';
+import '../../../model/auth_result.dart';
+import '../authentication_strategy.dart';
 
 class EmailPasswordAuthentication implements AuthenticationStrategy{
 
@@ -58,7 +59,7 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
       print(userCredential.user);
       return AuthResult(user: latestUser, errorMessage: null);
     } on FirebaseAuthException catch (e) {
-      return handleAuthException(e);
+        return handleAuthException(e);
     } catch (e) {
       return AuthResult(user: null, errorMessage: 'Error during sign-up: $e');
     }
@@ -81,7 +82,7 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
       );
       return AuthResult(user: userCredential.user, errorMessage: null);
     } on FirebaseAuthException catch (e) {
-      return handleAuthException(e);
+        return handleAuthException(e);
     } catch (e) {
       return AuthResult(user: null, errorMessage: 'Error during sign-in: $e');
     }

@@ -1,12 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flix_pedia/user_auth/authentication_strategy.dart';
 
-class AuthResult {
-    User? user;
-    String? errorMessage;
-
-    AuthResult({this.user, this.errorMessage});
-}
+import '../model/auth_result.dart';
 
 AuthResult handleAuthException(FirebaseAuthException e) {
   String errorMessage;

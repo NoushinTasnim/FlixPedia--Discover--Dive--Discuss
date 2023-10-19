@@ -1,4 +1,4 @@
-import 'package:flix_pedia/user_auth/authentication_strategy.dart';
+import 'package:flix_pedia/user_auth/strategy/authentication_strategy.dart';
 import 'package:flutter/material.dart';
 
 class AuthUser extends ChangeNotifier{

@@ -49,7 +49,6 @@ class _MainScreenState extends State<MainScreen> {
             FluidNavBarIcon(icon: Icons.person),
           ],
           onChange: (value){
-            print(value);
             setState(() {
               pageIndex = value;
             });

@@ -1,6 +1,6 @@
-import 'authentication_strategy.dart';
-import 'email_password_authentication.dart';
-import 'google_authentication.dart';
+import 'strategy/authentication_strategy.dart';
+import 'strategy/concrete_strategy/email_password_authentication.dart';
+import 'strategy/concrete_strategy/google_authentication.dart';
 
 class AuthenticationStrategyFactory {
   AuthenticationStrategy createEmailPasswordAuthenticationStrategy(String username, String email, String password) {

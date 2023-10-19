@@ -18,7 +18,7 @@ class AppPages {
     // Routes.changePasswordRoute: (context) => const ChangePassword(),
     Routes.signupRoute: (context) => const JoinScreen(),
     // Routes.verifyRoute: (context) => const VerifyScreen(),
-    Routes.homeScreenRoute: (context) => const MainScreen(),
+    Routes.homeScreenRoute: (context) => MainScreen(),
     Routes.movieScreenRoute: (context) => MovieHomeScreen(),
     Routes.seriesScreenRoute: (context) => SeriesHomeScreen(),
     // Routes.profileRoute: (context) => const MyProfile(),

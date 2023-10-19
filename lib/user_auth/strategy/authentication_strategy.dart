@@ -1,4 +1,4 @@
-import 'package:flix_pedia/user_auth/auth_result.dart';
+import 'package:flix_pedia/model/auth_result.dart';
 
 abstract class AuthenticationStrategy {
   Future<AuthResult> signUp();

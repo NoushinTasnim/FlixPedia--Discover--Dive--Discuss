@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'auth_result.dart';
-import 'authentication_strategy.dart';
+import '../../../model/auth_result.dart';
+import '../authentication_strategy.dart';
 
 class GoogleAuthentication implements AuthenticationStrategy {
   final FirebaseAuth _auth = FirebaseAuth.instance;

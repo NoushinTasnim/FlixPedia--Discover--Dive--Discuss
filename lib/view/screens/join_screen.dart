@@ -9,10 +9,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../model/auth_user.dart';
 import '../../routes/app_routes.dart';
+import '../../user_auth/auth_checker.dart';
 import '../../user_auth/authentication_factory.dart';
-import '../../user_auth/authentication_strategy.dart';
+import '../../user_auth/strategy/authentication_strategy.dart';
 import '../../observers/error_observer.dart';
-import '../../user_auth/auth_result.dart';
+import '../../model/auth_result.dart';
 import '../../utils/constants/spacing_constants.dart';
 import '../../utils/widget_utils.dart';
 import '../widgets/commons/purple_bg_button_large.dart';
@@ -44,33 +45,12 @@ class _JoinScreenState extends State<JoinScreen> {
     errorObserver = ErrorObserver();
   }
 
-  Future<void> checkAuth() async {
-    AuthResult result = await authStrategy.signUp();
-    if (result.user != null) {
-      var user = result.user;
-      // Access the AuthUser instance using Provider.of
-      AuthUser authUser = Provider.of<AuthUser>(context, listen: false);
-
-      // Set the values in AuthUser
-      authUser.setUsername(user?.displayName ?? 'User');
-      authUser.setEmail(user?.email ?? 'Email');
-      authUser.setPhotoUrl(user?.photoURL ?? '');
-      authUser.setAuthenticationStrategy(authStrategy);
-      print('email : ${authUser.username} ${authUser.email} ${authUser.photoUrl} ');
-      Constant.replaceScreen(Routes.homeScreenRoute, context);
-    } else {
-      setState(() {
-        errorObserver.setError(result.errorMessage!);
-      });
-    }
-  }
-
   Future<void> googleAuth()async {
     errorObserver.setError('');
 
     authStrategy = strategyFactory.createGoogleSignInAuthenticationStrategy();
 
-    checkAuth();
+    checkAuth(authStrategy, errorObserver, context);
   }
 
   Future<void> joinUser()async{
@@ -80,7 +60,7 @@ class _JoinScreenState extends State<JoinScreen> {
 
     authStrategy = strategyFactory.createEmailPasswordAuthenticationStrategy(username, email,password);
 
-    checkAuth();
+    checkAuth(authStrategy, errorObserver, context);
   }
 
   @override
