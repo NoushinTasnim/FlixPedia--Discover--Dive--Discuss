@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flix_pedia/user_auth/strategy/authentication_strategy.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +21,12 @@ Future<void> checkAuth(AuthenticationStrategy authStrategy, ErrorObserver errorO
     authUser.setPhotoUrl(user?.photoURL ?? '');
     authUser.setAuthenticationStrategy(authStrategy);
     print('email : ${authUser.username} ${authUser.email} ${authUser.photoUrl} ');
-    Constant.replaceScreen(Routes.homeScreenRoute, context);
+    Constant.replaceScreen(Routes.loadingScreenRoute, context);
   } else {
       errorObserver.setError(result.errorMessage!);
   }
+}
+
+User? getCurrentUser(){
+  return FirebaseAuth.instance.currentUser;
 }

@@ -1,4 +1,8 @@
 import 'package:flix_pedia/model/my_theme_model.dart';
+import 'package:flix_pedia/routes/app_routes.dart';
+import 'package:flix_pedia/user_auth/auth_checker.dart';
+import 'package:flix_pedia/utils/constants/spacing_constants.dart';
+import 'package:flix_pedia/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/auth_user.dart';
@@ -31,10 +35,54 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: FetchPixels.getPixelHeight(kPadding / 4)),
               buildUserEmail(authUser, context),
               SizedBox(height: FetchPixels.getPixelHeight(kPadding * 2)),
+              Text(
+                'Theme',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              SizedBox(height: FetchPixels.getPixelHeight(kPadding / 2)),
               Consumer<MyThemeModel>(
                 builder: (context, theme, child)=> buildThemeSetting(context, theme)),
+              SizedBox(height: FetchPixels.getPixelHeight(kPadding)),
+              Text(
+                'Profile',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               SizedBox(height: FetchPixels.getPixelHeight(kPadding / 2)),
-              buildProfileSettings(context, authUser),
+              getCurrentUser()!=null ?
+                buildProfileSettings(context, authUser):
+                Container(
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(
+                    horizontal: FetchPixels.getPixelWidth(kPadding)
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: FetchPixels.getPixelWidth(kPadding),
+                  vertical: FetchPixels.getPixelHeight(kPadding / 2),
+                ),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(FetchPixels.getScale()*kPadding/2)
+                ),
+                child: InkWell(
+                  onTap: (){
+                    Constant.sendToNext(context, Routes.signupRoute);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person_add,
+                        size: FetchPixels.getScale() * 24,
+                        color: Theme.of(context).textTheme.labelSmall?.color,
+                      ),
+                      SizedBox(width: FetchPixels.getPixelWidth(kPadding)),
+                      Text(
+                        'Create Account',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

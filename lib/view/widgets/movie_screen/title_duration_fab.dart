@@ -6,8 +6,18 @@ import '../../../utils/constants/spacing_constants.dart';
 
 class TitleDurationFab extends StatefulWidget {
   const TitleDurationFab({
-    super.key,
+    super.key,required this.title,
+    required this.year,
+    required this.id,
+    required this.text,
+    required this.text2,
   });
+
+  final String title;
+  final String year;
+  final int id;
+  final String text;
+  final String text2;
 
   @override
   State<TitleDurationFab> createState() => _TitleDurationFabState();
@@ -39,20 +49,20 @@ class _TitleDurationFabState extends State<TitleDurationFab> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'My Neighbour Totoro',
-                  style: Theme.of(context).textTheme.headlineLarge,
+                  widget.title,
+                  style: Theme.of(context).textTheme.labelLarge,
                   textAlign: TextAlign.start,
                 ),
                 SizedBox(
                   height: kPadding/2,
                 ),
                 Text(
-                  'Anime',
-                  style: Theme.of(context).textTheme.bodySmall
+                  widget.text2,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 Text(
-                  '2019',
-                  style: Theme.of(context).textTheme.bodySmall
+                  widget.year,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             ),
@@ -62,6 +72,17 @@ class _TitleDurationFabState extends State<TitleDurationFab> {
             width: 64,
             child: MaterialButton(
               onPressed: () async {
+                // await fetchVideos();
+                // if(videos.isNotEmpty){
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder:
+                //           (context) => PlayScreen(videos: videos,))
+                //   );
+                // }
+                // else{
+                //   showSnackbar(context);
+                // }
               },
               color: Theme.of(context).primaryColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

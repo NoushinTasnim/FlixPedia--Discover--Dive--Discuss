@@ -15,11 +15,11 @@ AppBar buildAppBar(BuildContext context, String text) {
     ),
     leading: Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: FetchPixels.getPixelWidth(kPadding/2)
+          horizontal: FetchPixels.getPixelWidth(kPadding/1.5)
       ),
-      child: SvgPicture.asset(
-        'assets/icons/app_icon.svg',
-        width: 40,
+      child: Image.asset(
+        'assets/images/icon.png',
+        width: 10,
       ),
     ),
     actions: [

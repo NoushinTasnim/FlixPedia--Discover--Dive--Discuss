@@ -7,8 +7,11 @@ import '../../../utils/constants/spacing_constants.dart';
 
 class SimilarContent extends StatelessWidget {
 
+  final List similarContent;
+
   SimilarContent({
     super.key,
+    required this.similarContent
   });
 
   @override
@@ -29,8 +32,11 @@ class SimilarContent extends StatelessWidget {
             height: 250,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: similarContent.length,
               itemBuilder: (context, index) => SimilarContentCard(
+                image: similarContent[index]['poster'],
+                name: similarContent[index]['title'],
+                character: '',
               ),
             ),
           )

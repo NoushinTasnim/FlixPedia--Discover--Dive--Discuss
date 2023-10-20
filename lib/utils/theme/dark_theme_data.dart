@@ -57,6 +57,12 @@ ThemeData darkThemeData(BuildContext context) {
         fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
+      labelLarge: TextStyle(
+        color: kDarkSecondaryColor,
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        letterSpacing: -0.12,
+      ),
       labelMedium: TextStyle(
         color: kDarkTextColor,
         fontSize: 20,
@@ -76,7 +82,7 @@ ThemeData darkThemeData(BuildContext context) {
       ),
       bodySmall: TextStyle(
         color: kDarkTextLightColor,
-        fontSize: 16,
+        fontSize: 14,
       ),
     ),
   );

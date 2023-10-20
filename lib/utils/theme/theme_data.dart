@@ -6,10 +6,11 @@ ThemeData themeData(BuildContext context) {
   return ThemeData(
     hoverColor: Colors.white,
     canvasColor: kPrimaryColor,
+    cardColor: Colors.black,
     dividerColor: kDarkColor,
     primaryColor: kSecondaryColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: kBottomNavColor,
+      backgroundColor: kDarkColor,
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: kPrimaryColor,
@@ -57,6 +58,12 @@ ThemeData themeData(BuildContext context) {
         fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
+      labelLarge: TextStyle(
+        color: kSecondaryColor,
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        letterSpacing: -0.12,
+      ),
       labelMedium: TextStyle(
         color: Colors.white,
         fontSize: 20,
@@ -76,8 +83,8 @@ ThemeData themeData(BuildContext context) {
         fontSize: 20,
       ),
       bodySmall: TextStyle(
-        color: kDarkColor,
-        fontSize: 16,
+        color: kPrimaryColor,
+        fontSize: 14,
       ),
     ),
   );

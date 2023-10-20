@@ -153,6 +153,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     Constant.backToFinish(context);
                   },
                 ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Constant.replaceScreen(Routes.homeScreenRoute, context);
+                    },
+                    child: Text(
+                      'Skip Now',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ),
+                )
               ],
             ),
           ),

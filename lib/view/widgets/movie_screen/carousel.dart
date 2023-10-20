@@ -2,10 +2,13 @@ import 'dart:math';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
+import '../../../model/movie_model.dart';
 import 'movie_card.dart';
 
 class Carousel extends StatefulWidget {
-  const Carousel({super.key});
+  Carousel({super.key, required this.contentList});
+
+  var contentList;
 
   @override
   State<Carousel> createState() => _CarouselState();
@@ -15,6 +18,7 @@ class _CarouselState extends State<Carousel> {
 
   late PageController _pageController;
   int initialPage = 1;
+
 
   @override
   void initState() {
@@ -37,7 +41,7 @@ class _CarouselState extends State<Carousel> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: FetchPixels.getPixelHeight(kPadding/2)),
       child: AspectRatio(
-        aspectRatio: 1.2,
+        aspectRatio: 1.0,
         child: PageView.builder(
             onPageChanged: (value){
               setState(() {
@@ -46,7 +50,7 @@ class _CarouselState extends State<Carousel> {
             },
             controller: _pageController,
             physics: ClampingScrollPhysics(),
-            itemCount: 8,
+            itemCount: widget.contentList.length,
             itemBuilder: (context, index) => buildMovieCard(index)
         ),
       ),
@@ -70,7 +74,9 @@ class _CarouselState extends State<Carousel> {
           scale: scale,
           child: Transform.rotate(
             angle: pi * value/18,
-            child: MovieCard(),
+            child: MovieCard(
+              content: widget.contentList[index],
+            ),
           ),
         ),
       );

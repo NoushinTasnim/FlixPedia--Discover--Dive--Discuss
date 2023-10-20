@@ -25,7 +25,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).canvasColor,
         extendBodyBehindAppBar: true,
         extendBody: true,
         body: PageTransitionSwitcher(
@@ -34,7 +33,6 @@ class _MainScreenState extends State<MainScreen> {
               primaryAnimation,
               secondaryAnimation,
               ) => FadeThroughTransition(
-            fillColor: Theme.of(context).canvasColor,
             animation: primaryAnimation,
             secondaryAnimation: secondaryAnimation,
             child: child,
@@ -54,8 +52,8 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
           style: FluidNavBarStyle(
-              barBackgroundColor: Theme.of(context).primaryColor.withOpacity(0.5),
-              iconBackgroundColor: Theme.of(context).primaryColor,
+              barBackgroundColor: Theme.of(context).dividerColor.withOpacity(0.5),
+              iconBackgroundColor: Theme.of(context).dividerColor,
               iconSelectedForegroundColor: Theme.of(context).canvasColor,
               iconUnselectedForegroundColor: Colors.white
           ),

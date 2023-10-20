@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-
 import '../../../utils/constants/color_constants.dart';
-import '../../../utils/constants/spacing_constants.dart';
 
 class MovieImage extends StatelessWidget {
-  const MovieImage({super.key});
+  MovieImage({
+    super.key,
+    required this.content
+  });
+
+  var content;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class MovieImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(kPadding*1.25),
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('assets/images/1.jpg'),
+              image: NetworkImage(content.poster),
             )
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/movie_model.dart';
 import '../../../utils/constants/color_constants.dart';
 import '../../../utils/constants/spacing_constants.dart';
 import 'details_screen.dart';
@@ -9,7 +10,11 @@ import 'movie_rating.dart';
 import 'movie_title.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key});
+  var content;
+
+  MovieCard({
+    super.key,
+    required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class MovieCard extends StatelessWidget {
       closedElevation: 0,
       openElevation: 0,
       closedBuilder: (context, action) => buildMovieCard(),
-      openBuilder: (context, action) => DetailsScreen(),
+      openBuilder: (context, action) => DetailsScreen(content: content),
     );
   }
 
@@ -30,10 +35,11 @@ class MovieCard extends StatelessWidget {
           horizontal: kPadding/2
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          MovieImage(),
-          MovieTitle(),
-          MovieRating(),
+          MovieImage(content: content),
+          MovieTitle(content: content),
+          MovieRating(content: content),
         ],
       ),
     );

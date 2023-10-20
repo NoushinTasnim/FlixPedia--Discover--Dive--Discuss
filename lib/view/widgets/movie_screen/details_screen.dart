@@ -1,16 +1,18 @@
+import 'package:flix_pedia/model/movie_model.dart';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/view/widgets/movie_screen/cast_crew.dart';
 import 'package:flix_pedia/view/widgets/movie_screen/similar_content.dart';
-import 'package:flix_pedia/view/widgets/movie_screen/similar_content_card.dart';
 import 'package:flix_pedia/view/widgets/movie_screen/title_duration_fab.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../../../utils/constants/spacing_constants.dart';
 import 'backdrop_rating.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  DetailsScreen({
+    super.key,
+    required this.content,
+  });
+
+  var content;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,18 @@ class DetailsScreen extends StatelessWidget {
           children: [
             backDropAndRating(
               size: size,
+              backDrop: content.backdrop,
+              rating: content.rating.toString(),
+              numOfRating: content.numOfRatings.toString(),
+              metaScoreRating: content.metascoreRating.toString(),
+              criticsReview: content.criticsReview.toString(),
             ),
             TitleDurationFab(
+              title: content.title,
+              id: content.id,
+              text: 'movie',
+              text2: 'Runtime: ' + content.runtime + " min",
+              year: "Released on: " + content.year.toString(),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: kPadding/2, horizontal: kPadding),
@@ -38,12 +50,14 @@ class DetailsScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: kPadding),
               child: Text(
-                'dff dsvjdsvbv wd hfh db dsifbv fid ivkbdsv sdv b sid jsavdsidsh ov svdsvbj dsgidv sbv b dg suv vbjv sadodvd bjv gdsuv dsvbnsv bsdsdufbvb fv',
-                style: Theme.of(context).textTheme.bodySmall,
+                '${content.plot}',
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
-            CastAndCrew(),
-            SimilarContent(),
+            if (content.cast.isNotEmpty)
+              CastAndCrew(casts: content.cast),
+            if (content.similar.isNotEmpty)
+              SimilarContent(similarContent: content.similar),
           ],
         ),
       ),

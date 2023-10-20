@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../model/movie_model.dart';
 import '../../../utils/constants/color_constants.dart';
 import '../../../utils/constants/spacing_constants.dart';
 
 class MovieRating extends StatelessWidget {
-  const MovieRating({super.key});
+  MovieRating({
+    super.key,
+    required this.content
+  });
+
+var content;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           Icons.star,
@@ -21,7 +27,7 @@ class MovieRating extends StatelessWidget {
           width: kPadding/2,
         ),
         Text(
-          '4.5',
+          content.rating.toString(),
           style: GoogleFonts.nunitoSans(
               color: Theme.of(context).primaryColor,
               fontSize: 20,

@@ -3,8 +3,8 @@ import 'package:flix_pedia/view/screens/movie_home_screen.dart';
 import 'package:flix_pedia/view/screens/series_home_screen.dart';
 import 'package:flix_pedia/view/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../view/screens/join_screen.dart';
+import '../view/screens/loading_screen.dart';
 import '../view/screens/login_screen.dart';
 import 'app_routes.dart';
 
@@ -18,6 +18,7 @@ class AppPages {
     // Routes.changePasswordRoute: (context) => const ChangePassword(),
     Routes.signupRoute: (context) => const JoinScreen(),
     // Routes.verifyRoute: (context) => const VerifyScreen(),
+    Routes.loadingScreenRoute: (context) => LoadingScreen(),
     Routes.homeScreenRoute: (context) => MainScreen(),
     Routes.movieScreenRoute: (context) => MovieHomeScreen(),
     Routes.seriesScreenRoute: (context) => SeriesHomeScreen(),

@@ -1,13 +1,15 @@
+import 'package:flix_pedia/model/movie_model.dart';
+import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 import 'package:flix_pedia/view/widgets/commons/app_bar.dart';
-import '../../utils/constants/color_constants.dart';
 import '../widgets/commons/build_carousel_section.dart';
+import '../widgets/genres.dart';
 
 class MovieHomeScreen extends StatelessWidget {
   MovieHomeScreen({super.key});
 
-  final List<String> sectionTitles = ['Popular', 'Trending Now', 'Top Rated', 'Coming Soon'];
+  final List<String> sectionTitles = ['Trending Now', 'Coming Soon', 'Popular', 'Top Rated'];
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +22,23 @@ class MovieHomeScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: FetchPixels.getPixelHeight(kPadding*2),
+              height: FetchPixels.getPixelHeight(kPadding),
+            ),
+            Genre(),
+            SizedBox(
+              height: FetchPixels.getPixelHeight(kPadding/2),
             ),
             Column(
-              children: sectionTitles.map((title) => buildCarouselSection(context, title)).toList(),
+              children: sectionTitles.asMap().entries.map((entry) {
+                final index = entry.key;
+                final title = entry.value;
+                final movie = movieList[index];
+                return buildCarouselSection(context, title, movie);
+              }).toList(),
             ),
+            SizedBox(
+              height: FetchPixels.getPixelHeight(kPadding*1.5),
+            )
           ],
         ),
       ),

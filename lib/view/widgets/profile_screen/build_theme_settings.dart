@@ -6,8 +6,14 @@ import '../../../utils/resizer/fetch_pixels.dart';
 Widget buildThemeSetting(BuildContext context, MyThemeModel theme) {
   FetchPixels(context);
   return Container(
-    color: Theme.of(context).primaryColor.withOpacity(0.2),
+    decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(FetchPixels.getScale()*kPadding/2)
+    ),
     width: double.infinity,
+    margin: EdgeInsets.symmetric(
+      horizontal: FetchPixels.getPixelWidth(kPadding)
+    ),
     padding: EdgeInsets.symmetric(
       horizontal: FetchPixels.getPixelWidth(kPadding),
       vertical: FetchPixels.getPixelHeight(kPadding / 2),

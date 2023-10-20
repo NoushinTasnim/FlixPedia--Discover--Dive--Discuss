@@ -13,6 +13,7 @@ abstract class Routes {
   static const privacyRoute = Paths.privacyPath;
   static const termConditionRoute = Paths.termConditionPath;
   static const aboutUsRoute = Paths.aboutUsPath;
+  static const loadingScreenRoute = Paths.loadingScreenPath;
 }
 
 abstract class Paths {
@@ -31,4 +32,5 @@ abstract class Paths {
   static const privacyPath = "/PrivacyScreen";
   static const termConditionPath = "/TermConditionScreen";
   static const aboutUsPath = "/AboutUsScreen";
+  static const loadingScreenPath = "/LoadingScreen";
 }

@@ -1,4 +1,5 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
+import 'package:flix_pedia/utils/constants/ktransparent_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,7 +9,14 @@ class SimilarContentCard extends StatelessWidget {
 
   const SimilarContentCard({
     super.key,
+    required this.image,
+    required this.name,
+    required this.character,
   });
+
+  final String image;
+  final String name;
+  final String character;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +33,22 @@ class SimilarContentCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
             ),
             child: ClipRect(
-              child: Image(
-                image: AssetImage('assets/images/1.jpg'), // Image URL
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage, // Placeholder image (e.g., a transparent image)
+                image: image, // Image URL
                 fit: BoxFit.cover,
+                fadeInDuration: Duration(milliseconds: 200),
+                fadeOutDuration: Duration(milliseconds: 200),
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Icon(
+                    Icons.movie,
+                    color: Colors.white,
+                    size: 50,
+                  ); // Show an error icon if image fails to load
+                },
+                placeholderErrorBuilder: (context, error, stackTrace) {
+                  return CircularProgressIndicator(); // Show a progress indicator if placeholder image fails to load
+                },
               ),
             ),
           ),
@@ -35,19 +56,15 @@ class SimilarContentCard extends StatelessWidget {
             height: kPadding/2,
           ),
           Text(
-            'bola',
-            style: Theme.of(context).textTheme.titleSmall,
+            name,
+            style: Theme.of(context).textTheme.titleSmall
           ),
           SizedBox(
             height: kPadding/4,
           ),
           Text(
-            'hola',
-            style: GoogleFonts.nunitoSans(
-                color: Colors.grey,
-                fontSize: 12,
-                fontWeight: FontWeight.w500
-            ),
+            character,
+            style: Theme.of(context).textTheme.labelSmall
           ),
         ],
       ),

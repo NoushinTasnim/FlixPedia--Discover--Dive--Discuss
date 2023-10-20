@@ -15,11 +15,11 @@ Widget buildUserProfileImage(AuthUser authUser, BuildContext context) {
       fadeOutDuration: const Duration(milliseconds: 200),
       imageErrorBuilder: (context, error, stackTrace) {
         return CircleAvatar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).dividerColor,
           radius: FetchPixels.getScale() * 50,
           child: Icon(
             Icons.person,
-            color: Colors.black, // Adjust the color as needed
+            color: Theme.of(context).hoverColor, // Adjust the color as needed
             size: FetchPixels.getScale() * 50,
           ),
         );

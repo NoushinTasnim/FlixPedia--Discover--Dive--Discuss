@@ -8,21 +8,32 @@ class backDropAndRating extends StatefulWidget {
   backDropAndRating({
     super.key,
     required this.size,
+    required this.backDrop,
+    required this.rating,
+    required this.numOfRating,
+    required this.metaScoreRating,
+    required this.criticsReview,
   });
 
   final Size size;
+  final String backDrop;
+  final String rating;
+  final String numOfRating;
+  final String metaScoreRating;
+  final String criticsReview;
 
   @override
   State<backDropAndRating> createState() => _backDropAndRatingState();
 }
 
 class _backDropAndRatingState extends State<backDropAndRating> {
-  Icon icon = Icon(
-    Icons.star_border_outlined,
-  );
 
   @override
   Widget build(BuildContext context) {
+    Icon icon = Icon(
+      Icons.star_border_outlined,
+      color: Theme.of(context).primaryColor,
+    );
     return SizedBox(
       height: widget.size.height * 0.4,
       child: Stack(
@@ -34,11 +45,17 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                 bottomRight: Radius.circular(50),
                 bottomLeft: Radius.circular(50),
               ),
-              image: DecorationImage(
+              image: widget.backDrop.isNotEmpty
+                  ? DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/images/1.jpg'),
+                image: NetworkImage(widget.backDrop),
+              )
+                  : DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/1.jpg') as ImageProvider,
               ),
-            ),
+
+    ),
           ),
           Positioned(
             bottom: 0,
@@ -75,20 +92,21 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                       ),
                       RichText(
                         text: TextSpan(
-                            style: TextStyle(
-                                color: Colors.white
-                            ),
+                            style: Theme.of(context).textTheme.labelSmall,
                             children: [
                               TextSpan(
-                                text: '4.5/',
-                                style: Theme.of(context).textTheme.headlineMedium
+                                text: '${widget.rating}/',
+                                style: GoogleFonts.nunitoSans(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               TextSpan(
                                 text: '10\n',
-                                style: Theme.of(context).textTheme.headlineSmall
+                                style: Theme.of(context).textTheme.labelSmall,
                               ),
                               TextSpan(
-                                text: '234555',
+                                text: '${widget.numOfRating}',
                                 style: GoogleFonts.nunitoSans(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w600,
@@ -110,7 +128,7 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                               color: Colors.yellow,
                             ) : Icon(
                               Icons.star_border_outlined,
-                              color: Theme.of(context).dividerColor,
+                              color: Theme.of(context).primaryColor,
                             );
                           });
                         },
@@ -121,7 +139,7 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                       ),
                       Text(
                         'Rate This',
-                        style: Theme.of(context).textTheme.headlineMedium
+                        style: Theme.of(context).textTheme.labelSmall
                       ),
                     ],
                   ),
@@ -135,10 +153,10 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                           borderRadius: BorderRadius.circular(2),
                         ),
                         child: Text(
-                          '3.0',
-                          style: TextStyle(
-                            color: Colors.white
-                          )
+                          '${widget.metaScoreRating}',
+                          style: GoogleFonts.nunitoSans(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -147,14 +165,16 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                            style: Theme.of(context).textTheme.headlineSmall,
+                            style: Theme.of(context).textTheme.labelSmall,
                             children: [
                               TextSpan(
                                 text: 'Metascore\n',
-                                style: Theme.of(context).textTheme.headlineSmall,
+                                style: GoogleFonts.nunitoSans(
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               TextSpan(
-                                text: '40 critic reviews',
+                                text: '${widget.criticsReview} critic reviews',
                                 style: GoogleFonts.nunitoSans(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w600,

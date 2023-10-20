@@ -41,11 +41,17 @@ Widget buildProfileSetting(BuildContext context, {
   required VoidCallback onTap,
 }) {
   return Container(
-    color: Theme.of(context).primaryColor.withOpacity(0.1),
     width: double.infinity,
+    margin: EdgeInsets.symmetric(
+        horizontal: FetchPixels.getPixelWidth(kPadding)
+    ),
     padding: EdgeInsets.symmetric(
       horizontal: FetchPixels.getPixelWidth(kPadding),
       vertical: FetchPixels.getPixelHeight(kPadding / 2),
+    ),
+    decoration: BoxDecoration(
+      color: Theme.of(context).primaryColor.withOpacity(0.1),
+      borderRadius: BorderRadius.circular(FetchPixels.getScale()*kPadding/2)
     ),
     child: InkWell(
       onTap: onTap,

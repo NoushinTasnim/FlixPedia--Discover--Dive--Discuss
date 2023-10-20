@@ -1,10 +1,11 @@
+import 'package:flix_pedia/model/movie_model.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/color_constants.dart';
 import '../movie_screen/carousel.dart';
 
-Widget buildCarouselSection(BuildContext context, String title) {
+Widget buildCarouselSection(BuildContext context, String title, var contentList) {
   FetchPixels(context);
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,7 +21,7 @@ Widget buildCarouselSection(BuildContext context, String title) {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
-      Carousel(),
+      Carousel(contentList: contentList),
     ],
   );
 }

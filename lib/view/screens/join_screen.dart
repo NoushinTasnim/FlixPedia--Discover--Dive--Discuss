@@ -132,6 +132,21 @@ class _JoinScreenState extends State<JoinScreen> {
                     Constant.sendToNext(context, Routes.loginRoute);
                   },
                 ),
+                SizedBox(
+                  height: FetchPixels.getPixelHeight(kPadding*2),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextButton(
+                    onPressed: () {  
+                      Constant.replaceScreen(Routes.homeScreenRoute, context);
+                    }, 
+                    child: Text(
+                      'Skip Now',
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
