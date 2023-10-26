@@ -56,7 +56,7 @@ List<Map<String, dynamic>> genresList = [
 String getGenreName(int genreId) {
   final genre = genresList.firstWhere(
         (element) => element['id'] == genreId,
-    orElse: () => Map<String, dynamic>(),
+    orElse: () => <String, dynamic>{},
   );
   return genre.isNotEmpty ? genre['name'] : 'Unknown';
 }
@@ -73,30 +73,30 @@ List<List<Movie>> movieList = [
   topMoviesList,
 ];
 
-final apiKey = '5f80bc0b10a444db9c045e07de26b900';
-final mainUrl = 'https://api.themoviedb.org/3';
+const apiKey = '5f80bc0b10a444db9c045e07de26b900';
+const mainUrl = 'https://api.themoviedb.org/3';
 
-Future<Iterable<Null>> fetchMovies(String baseUrl, List<Movie> movies) async {
+Future<Iterable<void>> fetchMovies(String baseUrl, List<Movie> movies) async {
   movies.clear();
   print('object');
   final response = await http.get(Uri.parse('$baseUrl?api_key=$apiKey'));
-  print(response.statusCode);
+  // print(response.statusCode);
   if (response.statusCode == 200) {
     final jsonResponse = json.decode(response.body);
     final List<dynamic> results = jsonResponse['results'];
-    print(results);
+    // print(results);
 
     return Future.wait(results.map((movieData) async {
       final List<dynamic> genreData = movieData['genre_ids'];
       final List<String> genres = genreData.map((genreId) => getGenreName(genreId).toString()).toList();
-
+      print(genres);
       final castResponse = await http.get(Uri.parse('$mainUrl/movie/${movieData['id']}/credits?api_key=$apiKey'));
       final castJsonResponse = json.decode(castResponse.body);
 
       final similarRes = await http.get(Uri.parse('$mainUrl/movie/${movieData['id']}/similar?api_key=$apiKey'));
       final similarJsonResponse = json.decode(similarRes.body);
 
-      print(similarJsonResponse);
+      // print(similarJsonResponse);
 
       final List<dynamic> castData = castJsonResponse['cast'];
       final List<dynamic> similarData = similarJsonResponse['results'];
@@ -129,7 +129,7 @@ Future<Iterable<Null>> fetchMovies(String baseUrl, List<Movie> movies) async {
           }).toList(),
         ),
       );
-      print(movies[movies.length-1].title);
+      // print(movies[movies.length-1].title);
       // print(movies[movies.length-1].similar);
     }));
   } else {

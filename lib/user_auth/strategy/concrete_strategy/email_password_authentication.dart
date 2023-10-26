@@ -1,4 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../observers/error_observer.dart';
+import '../../auth_checker.dart';
 import '../../auth_exception_handler.dart';
 import '../../../model/auth_result.dart';
 import '../authentication_strategy.dart';
@@ -57,6 +61,7 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
       User? latestUser = FirebaseAuth.instance.currentUser;
       print('${latestUser?.displayName}');
       print(userCredential.user);
+      // saveUser(email, password);
       return AuthResult(user: latestUser, errorMessage: null);
     } on FirebaseAuthException catch (e) {
         return handleAuthException(e);
@@ -80,6 +85,7 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
         email: email,
         password: password,
       );
+      saveUser(email, password);
       return AuthResult(user: userCredential.user, errorMessage: null);
     } on FirebaseAuthException catch (e) {
         return handleAuthException(e);
@@ -96,5 +102,28 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
   @override
   Future<void> deleteAccount() async {
     await _auth.currentUser!.delete();
+  }
+
+  @override
+  Future<void> saveUser(String email, String password) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('email', email);
+    prefs.setString('password', password);
+    prefs.setString('authenticationStrategy', 'emailPass');
+  }
+
+  @override
+  Future<void> loadUser(SharedPreferences prefs, BuildContext context)  async {
+    String email = prefs.getString('email')!;
+    String password = prefs.getString('password')!;
+
+    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    User user = userCredential.user!;
+    print(user);
+    // saveData(user, context, EmailPasswordAuthentication(user.displayName!=null ? user.displayName! : 'aa', email, password));
   }
 }

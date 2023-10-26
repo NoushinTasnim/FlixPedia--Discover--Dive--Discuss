@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../model/movie_model.dart';
 import '../../../utils/constants/color_constants.dart';
-import '../../../utils/constants/spacing_constants.dart';
 
 class MovieRating extends StatelessWidget {
   MovieRating({
@@ -18,12 +16,12 @@ var content;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
+        const Icon(
           Icons.star,
           size: 25,
           color: Colors.yellow,
         ),
-        SizedBox(
+        const SizedBox(
           width: kPadding/2,
         ),
         Text(

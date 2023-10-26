@@ -1,7 +1,6 @@
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants/color_constants.dart';
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({super.key});

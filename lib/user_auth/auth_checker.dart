@@ -11,16 +11,7 @@ import '../utils/constants/spacing_constants.dart';
 Future<void> checkAuth(AuthenticationStrategy authStrategy, ErrorObserver errorObserver, BuildContext context) async {
   AuthResult result = await authStrategy.signUp();
   if (result.user != null) {
-    var user = result.user;
-    // Access the AuthUser instance using Provider.of
-    AuthUser authUser = Provider.of<AuthUser>(context, listen: false);
-
-    // Set the values in AuthUser
-    authUser.setUsername(user?.displayName ?? 'User');
-    authUser.setEmail(user?.email ?? 'Email');
-    authUser.setPhotoUrl(user?.photoURL ?? '');
-    authUser.setAuthenticationStrategy(authStrategy);
-    print('email : ${authUser.username} ${authUser.email} ${authUser.photoUrl} ');
+    saveData(result.user!, context, authStrategy);
     Constant.replaceScreen(Routes.loadingScreenRoute, context);
   } else {
       errorObserver.setError(result.errorMessage!);
@@ -29,4 +20,15 @@ Future<void> checkAuth(AuthenticationStrategy authStrategy, ErrorObserver errorO
 
 User? getCurrentUser(){
   return FirebaseAuth.instance.currentUser;
+}
+
+void saveData(User user, BuildContext context, AuthenticationStrategy authStrategy){
+  // Access the AuthUser instance using Provider.of
+  AuthUser authUser = Provider.of<AuthUser>(context, listen: false);
+
+  // Set the values in AuthUser
+  authUser.setUsername(user?.displayName ?? 'User');
+  authUser.setEmail(user?.email ?? 'Email');
+  authUser.setPhotoUrl(user?.photoURL ?? '');
+  authUser.setAuthenticationStrategy(authStrategy);
 }

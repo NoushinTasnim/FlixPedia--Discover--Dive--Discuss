@@ -1,13 +1,10 @@
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
-
 import '../../../utils/constants/color_constants.dart';
-import '../../screens/join_screen.dart';
-import '../../../utils/constants/spacing_constants.dart';
 import '../../../utils/widget_utils.dart';
 
 class PurpleBackgroundButtonLarge extends StatelessWidget {
-  String text;
+  final String text;
   var onTap;
 
   PurpleBackgroundButtonLarge({
@@ -23,7 +20,7 @@ class PurpleBackgroundButtonLarge extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           vertical: kPadding*2,
         ),
         padding: EdgeInsets.symmetric(

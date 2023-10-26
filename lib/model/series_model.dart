@@ -110,15 +110,15 @@ List<List<Series>> seriesList = [
 String getGenreName(int genreId) {
   final genre = genresList.firstWhere(
         (element) => element['id'] == genreId,
-    orElse: () => Map<String, dynamic>(),
+    orElse: () => <String, dynamic>{},
   );
   return genre.isNotEmpty ? genre['name'] : 'Unknown';
 }
 
-final apiKey = '5f80bc0b10a444db9c045e07de26b900';
-final mainUrl = 'https://api.themoviedb.org/3';
+const apiKey = '5f80bc0b10a444db9c045e07de26b900';
+const mainUrl = 'https://api.themoviedb.org/3';
 
-Future<Iterable<Null>> fetchSeries(String url, List<Series> series) async {
+Future<Iterable<void>> fetchSeries(String url, List<Series> series) async {
   series.clear();
   final response = await http.get(Uri.parse('$url?api_key=$apiKey'));
   if (response.statusCode == 200) {
@@ -135,14 +135,14 @@ Future<Iterable<Null>> fetchSeries(String url, List<Series> series) async {
       final similarRes = await http.get(Uri.parse('https://api.themoviedb.org/3/tv/${seriesData['id']}/similar?api_key=$apiKey'));
       final similarJsonResponse = json.decode(similarRes.body);
 
-      print(similarJsonResponse);
+      // print(similarJsonResponse);
 
       final List<dynamic> similarData = similarJsonResponse['results'];
       final List<dynamic> castData = castJsonResponse['cast'];
 
       final seriesRes = await http.get(Uri.parse('https://api.themoviedb.org/3/tv/${seriesData['id']}?api_key=$apiKey'));
       final seriesResponse = json.decode(seriesRes.body);
-      print(seriesResponse);
+      // print(seriesResponse);
 
       series.add(Series(
         runtime: seriesResponse['number_of_seasons'].toString() + seriesResponse['number_of_episodes'].toString(),
@@ -167,7 +167,7 @@ Future<Iterable<Null>> fetchSeries(String url, List<Series> series) async {
           'poster': 'https://image.tmdb.org/t/p/w500${sim['poster_path']}',
         }).toList(),
       ));
-      print(series[series.length-1].similar);
+      // print(series[series.length-1].similar);
     }));
   } else {
     throw Exception('Failed to fetch series');

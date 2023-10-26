@@ -1,9 +1,7 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/constants/ktransparent_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/constants/spacing_constants.dart';
 
 class SimilarContentCard extends StatelessWidget {
 
@@ -22,7 +20,7 @@ class SimilarContentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      margin: EdgeInsets.only(right: kPadding),
+      margin: const EdgeInsets.only(right: kPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,29 +35,29 @@ class SimilarContentCard extends StatelessWidget {
                 placeholder: kTransparentImage, // Placeholder image (e.g., a transparent image)
                 image: image, // Image URL
                 fit: BoxFit.cover,
-                fadeInDuration: Duration(milliseconds: 200),
-                fadeOutDuration: Duration(milliseconds: 200),
+                fadeInDuration: const Duration(milliseconds: 200),
+                fadeOutDuration: const Duration(milliseconds: 200),
                 imageErrorBuilder: (context, error, stackTrace) {
-                  return Icon(
+                  return const Icon(
                     Icons.movie,
                     color: Colors.white,
                     size: 50,
                   ); // Show an error icon if image fails to load
                 },
                 placeholderErrorBuilder: (context, error, stackTrace) {
-                  return CircularProgressIndicator(); // Show a progress indicator if placeholder image fails to load
+                  return const CircularProgressIndicator(); // Show a progress indicator if placeholder image fails to load
                 },
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: kPadding/2,
           ),
           Text(
             name,
             style: Theme.of(context).textTheme.titleSmall
           ),
-          SizedBox(
+          const SizedBox(
             height: kPadding/4,
           ),
           Text(

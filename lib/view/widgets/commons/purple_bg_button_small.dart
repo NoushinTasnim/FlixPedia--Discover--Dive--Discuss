@@ -1,15 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../routes/app_routes.dart';
-import '../../screens/join_screen.dart';
+import '../../../user_auth/auth_checker.dart';
+import '../../../user_auth/strategy/concrete_strategy/google_authentication.dart';
 import '../../../utils/constants/color_constants.dart';
 import '../../../utils/constants/spacing_constants.dart';
 import '../../../utils/widget_utils.dart';
 
 class PurpleBackgroundButtonSmall extends StatelessWidget {
-  String text;
+  final String text;
 
-  PurpleBackgroundButtonSmall({
+  const PurpleBackgroundButtonSmall({
     super.key,
     required this.text,
   });
@@ -18,13 +20,23 @@ class PurpleBackgroundButtonSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Constant.sendToNext(context, Routes.signupRoute);
+        final FirebaseAuth _auth = FirebaseAuth.instance;
+        User? user = _auth.currentUser;
+        print(user);
+
+        saveData(user!, context, GoogleAuthentication());
+        if(user!=null){
+          Constant.replaceScreen(Routes.loadingScreenRoute, context);
+        }
+        else{
+          Constant.replaceScreen(Routes.signupRoute, context);
+        }
       },
       child: Container(
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           vertical: kPadding*2,
         ),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: kPadding/2,
           horizontal: kPadding*2,
         ),

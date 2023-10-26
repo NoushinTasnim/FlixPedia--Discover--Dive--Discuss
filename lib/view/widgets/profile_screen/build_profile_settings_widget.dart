@@ -17,7 +17,7 @@ Widget buildProfileSettings(BuildContext context, AuthUser authUser) {
         onTap: () {
           authUser.authenticationStrategy.signOut();
           showToastMessage('User Logged Out');
-          Constant.replaceScreen(Routes.signupRoute, context);
+          Constant.replaceScreen(Routes.homeScreenRoute, context);
         },
       ),
       SizedBox(height: FetchPixels.getPixelHeight(kPadding / 8)),
@@ -28,7 +28,7 @@ Widget buildProfileSettings(BuildContext context, AuthUser authUser) {
         onTap: () {
           authUser.authenticationStrategy.deleteAccount();
           showToastMessage('User Account Deleted');
-          Constant.replaceScreen(Routes.signupRoute, context);
+          Constant.replaceScreen(Routes.homeScreenRoute, context);
         },
       ),
     ],
@@ -60,12 +60,12 @@ Widget buildProfileSetting(BuildContext context, {
           Icon(
             icon,
             size: FetchPixels.getScale() * 24,
-            color: Theme.of(context).textTheme.labelSmall?.color,
+            color: Theme.of(context).textTheme.titleSmall?.color,
           ),
           SizedBox(width: FetchPixels.getPixelWidth(kPadding)),
           Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),

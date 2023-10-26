@@ -1,15 +1,13 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/view/widgets/movie_screen/similar_content_card.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/constants/spacing_constants.dart';
 
 class SimilarContent extends StatelessWidget {
 
   final List similarContent;
 
-  SimilarContent({
+  const SimilarContent({
     super.key,
     required this.similarContent
   });
@@ -17,7 +15,7 @@ class SimilarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(kPadding),
+      padding: const EdgeInsets.all(kPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,7 +23,7 @@ class SimilarContent extends StatelessWidget {
             'Similar Contents',
             style: Theme.of(context).textTheme.bodyMedium
           ),
-          SizedBox(
+          const SizedBox(
             height: kPadding,
           ),
           SizedBox(

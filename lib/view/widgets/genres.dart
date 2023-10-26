@@ -1,9 +1,10 @@
-import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 
 import 'genre_card.dart';
 class Genre extends StatefulWidget {
-  const Genre({super.key});
+  const Genre({super.key, required this.content});
+
+  final String content;
 
   @override
   State<Genre> createState() => _GenreState();
@@ -12,7 +13,7 @@ class Genre extends StatefulWidget {
 class _GenreState extends State<Genre> {
 
   int selectedGenre = -1;
-  List<String> genre = [
+  List<String> movieGenre = [
     "Action",
     "Adventure",
     "Animation",
@@ -34,9 +35,29 @@ class _GenreState extends State<Genre> {
     "Western"
   ];
 
+  List<String> seriesGenre = [
+    "Action & Adventure",
+    "Animation",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Kids",
+    "Mystery",
+    "News",
+    "Reality",
+    "Sci-Fi & Fantasy",
+    "Soap",
+    "Talk",
+    "War & Politics",
+    "Western"
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    List<String> genre = widget.content == 'movie' ? movieGenre : seriesGenre;
+    return SizedBox(
       height: 36,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -44,10 +65,11 @@ class _GenreState extends State<Genre> {
         itemBuilder: (context, index) => GestureDetector(
           onTap: () async {
             setState(() {
-              if(selectedGenre == index)
+              if(selectedGenre == index) {
                 selectedGenre = -1;
-              else
+              } else {
                 selectedGenre = index;
+              }
             });
           },
           child: GenreCard(

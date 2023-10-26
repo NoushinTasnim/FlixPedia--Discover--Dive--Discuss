@@ -1,13 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flix_pedia/firebase_options.dart';
 import 'package:flix_pedia/model/auth_user.dart';
 import 'package:flix_pedia/routes/app_pages.dart';
-import 'package:flix_pedia/view/screens/welcome_screen.dart';
+import 'package:flix_pedia/user_auth/authentication_factory.dart';
 import 'package:flix_pedia/utils/theme/dark_theme_data.dart';
 import 'package:flix_pedia/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'model/my_theme_model.dart';
 
 void main() async{
@@ -15,13 +15,23 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
-  runApp(MyApp());
+
+  MyThemeModel themeModel = MyThemeModel();
+  await themeModel.loadThemeFromPrefs();
+  // await callMovieAPIs();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print('ggg ');
+    print(MyThemeModel().isLightTheme);
+    AuthenticationStrategyFactory authenticationStrategyFactory = AuthenticationStrategyFactory();
+    authenticationStrategyFactory.getLogIn(context);
     return ChangeNotifierProvider(
       create: (context) => MyThemeModel(),
       child: ChangeNotifierProvider(
@@ -31,8 +41,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: themeData(context),
             darkTheme: darkThemeData(context),
-            themeMode: theme.isLightTheme ? ThemeMode.light : ThemeMode.dark,
-            initialRoute: "/LoadingScreen",
+            themeMode: theme.isLightTheme==true ? ThemeMode.light : ThemeMode.dark,
+            initialRoute: "/",
             routes: AppPages.routes,
           ),
         ),

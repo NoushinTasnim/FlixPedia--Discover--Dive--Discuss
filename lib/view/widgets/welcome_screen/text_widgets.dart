@@ -2,7 +2,6 @@ import 'package:flix_pedia/utils/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/color_constants.dart';
-import '../../../utils/constants/spacing_constants.dart';
 
 class WelcomeScreenTextWidgets extends StatelessWidget {
   const WelcomeScreenTextWidgets({super.key});
@@ -20,7 +19,7 @@ class WelcomeScreenTextWidgets extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: kPadding,
           ),
           Text(

@@ -19,20 +19,20 @@ Widget buildThemeSetting(BuildContext context, MyThemeModel theme) {
       vertical: FetchPixels.getPixelHeight(kPadding / 2),
     ),
     child: InkWell(
-      onTap: () {
-        theme.changeTheme();
+      onTap: () async {
+        await theme.changeTheme();
       },
       child: Row(
         children: [
           Icon(
             theme.isLightTheme ? Icons.sunny : Icons.nightlight,
             size: FetchPixels.getScale() * 24,
-            color: Theme.of(context).textTheme.labelSmall?.color,
+            color: Theme.of(context).textTheme.titleSmall?.color,
           ),
           SizedBox(width: FetchPixels.getPixelWidth(kPadding)),
           Text(
             theme.isLightTheme ? 'Light Mode' : 'Dark Mode',
-            style: Theme.of(context).textTheme.labelSmall,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),

@@ -24,7 +24,7 @@ class MovieHomeScreen extends StatelessWidget {
             SizedBox(
               height: FetchPixels.getPixelHeight(kPadding),
             ),
-            Genre(),
+            const Genre(content: 'movie',),
             SizedBox(
               height: FetchPixels.getPixelHeight(kPadding/2),
             ),

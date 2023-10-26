@@ -1,13 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'constants/color_constants.dart';
-import 'constants/spacing_constants.dart';
 
 const kBoxBackgroundDecoration = BoxDecoration(
     image: DecorationImage(
-        image: AssetImage('assets/images/dark_join_screen_bg.png'),
+        image: AssetImage('assets/images/join_screen_bg.png'),
         fit: BoxFit.cover
     )
 );
@@ -31,7 +27,7 @@ BoxDecoration kBoxButtonBackgroundDecoration(BuildContext context) {
 }
 
 BoxDecoration kBoxDecorationWhiteBackground = BoxDecoration(
-    borderRadius: BorderRadius.circular(kPadding),
+    borderRadius: BorderRadius.circular(kPadding*10),
     color: Colors.white,
     boxShadow: const [
       BoxShadow(

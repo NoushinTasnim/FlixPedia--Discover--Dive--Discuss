@@ -1,6 +1,5 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GenreCard extends StatelessWidget {
   const GenreCard({
@@ -30,7 +29,7 @@ class GenreCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: kPadding),
         child: Text(
           genre,
-          style: selectedGenre == index ? Theme.of(context).textTheme.bodySmall : Theme.of(context).textTheme.labelSmall
+          style: selectedGenre == index ? Theme.of(context).textTheme.labelSmall : Theme.of(context).textTheme.titleSmall
         ),
       ),
     );

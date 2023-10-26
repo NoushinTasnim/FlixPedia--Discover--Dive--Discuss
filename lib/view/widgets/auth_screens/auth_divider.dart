@@ -10,16 +10,16 @@ class AuthDividerWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        DividerWidget(),
+        const DividerWidget(),
         Expanded(
           flex: 2,
           child: Text(
             '\tOr Continue With\t',
-            style: Theme.of(context).textTheme.bodySmall,
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
         ),
-        DividerWidget(),
+        const DividerWidget(),
       ],
     );
   }

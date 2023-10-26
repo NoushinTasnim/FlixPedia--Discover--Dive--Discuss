@@ -1,12 +1,10 @@
 import 'package:flix_pedia/model/series_model.dart';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
-import '../../utils/constants/spacing_constants.dart';
 import '../../utils/resizer/fetch_pixels.dart';
 import '../widgets/commons/app_bar.dart';
 import '../widgets/commons/build_carousel_section.dart';
 import '../widgets/genres.dart';
-import '../widgets/movie_screen/carousel.dart';
 
 class SeriesHomeScreen extends StatelessWidget {
   SeriesHomeScreen({super.key});
@@ -26,7 +24,7 @@ class SeriesHomeScreen extends StatelessWidget {
             SizedBox(
               height: FetchPixels.getPixelHeight(kPadding),
             ),
-            Genre(),
+            const Genre(content: 'series',),
             SizedBox(
               height: FetchPixels.getPixelHeight(kPadding/2),
             ),

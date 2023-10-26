@@ -1,4 +1,3 @@
-import 'package:flix_pedia/model/movie_model.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 

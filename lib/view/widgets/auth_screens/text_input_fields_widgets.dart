@@ -1,13 +1,11 @@
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flix_pedia/view/widgets/auth_screens/text_field_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../utils/constants/color_constants.dart';
-import '../../../utils/constants/spacing_constants.dart';
 
 class TextInputFiledsWidget extends StatelessWidget {
-  TextInputFiledsWidget({
+  const TextInputFiledsWidget({
     super.key,
     required this.emailController,
     required this.passwordController,
@@ -47,7 +45,7 @@ class TextInputFiledsWidget extends StatelessWidget {
           iconData: Icons.mail_outline,
           textInputController: emailController,
         ),
-        SizedBox(
+        const SizedBox(
           height: kPadding,
         ),
         TextFieldWidget(

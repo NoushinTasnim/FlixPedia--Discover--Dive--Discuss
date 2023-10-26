@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
-import '../../../model/movie_model.dart';
 import 'movie_card.dart';
 
 class Carousel extends StatefulWidget {
@@ -49,7 +48,7 @@ class _CarouselState extends State<Carousel> {
               });
             },
             controller: _pageController,
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             itemCount: widget.contentList.length,
             itemBuilder: (context, index) => buildMovieCard(index)
         ),
@@ -68,7 +67,7 @@ class _CarouselState extends State<Carousel> {
       double scale = 1 - (value.abs() * 0.33); // Adjust the scale factor as desired
 
       return AnimatedOpacity(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         opacity: initialPage == index ? 1 : 0.25,
         child: Transform.scale(
           scale: scale,

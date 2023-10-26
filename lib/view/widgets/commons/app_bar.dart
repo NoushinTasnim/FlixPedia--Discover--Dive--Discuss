@@ -1,8 +1,5 @@
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import '../../../model/my_theme_model.dart';
 import '../../../utils/constants/color_constants.dart';
 
 AppBar buildAppBar(BuildContext context, String text) {
@@ -27,7 +24,7 @@ AppBar buildAppBar(BuildContext context, String text) {
         padding: const EdgeInsets.symmetric(horizontal: kPadding),
         child: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.search,
           ),
         ),

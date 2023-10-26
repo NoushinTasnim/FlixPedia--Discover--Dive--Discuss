@@ -1,9 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-
-import '../../../model/movie_model.dart';
 import '../../../utils/constants/color_constants.dart';
-import '../../../utils/constants/spacing_constants.dart';
 import 'details_screen.dart';
 import 'movie_image.dart';
 import 'movie_rating.dart';

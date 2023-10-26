@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> pageList = <Widget>[
     MovieHomeScreen(),
     SeriesHomeScreen(),
-    ProfileScreen(),
+    const ProfileScreen(),
   ];
 
   @override

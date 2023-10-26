@@ -2,10 +2,8 @@ import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/constants/spacing_constants.dart';
-
-class backDropAndRating extends StatefulWidget {
-  backDropAndRating({
+class BackDropAndRating extends StatefulWidget {
+  const BackDropAndRating({
     super.key,
     required this.size,
     required this.backDrop,
@@ -23,10 +21,10 @@ class backDropAndRating extends StatefulWidget {
   final String criticsReview;
 
   @override
-  State<backDropAndRating> createState() => _backDropAndRatingState();
+  State<BackDropAndRating> createState() => _BackDropAndRatingState();
 }
 
-class _backDropAndRatingState extends State<backDropAndRating> {
+class _BackDropAndRatingState extends State<BackDropAndRating> {
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,7 @@ class _backDropAndRatingState extends State<backDropAndRating> {
           Container(
             height: widget.size.height * 0.4 - 50,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(50),
                 bottomLeft: Radius.circular(50),
               ),
@@ -50,9 +48,9 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                 fit: BoxFit.cover,
                 image: NetworkImage(widget.backDrop),
               )
-                  : DecorationImage(
+                  : const DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/images/1.jpg') as ImageProvider,
+                image: AssetImage('assets/images/1.jpg'),
               ),
 
     ),
@@ -65,11 +63,11 @@ class _backDropAndRatingState extends State<backDropAndRating> {
               height: 100,
               decoration: BoxDecoration(
                 color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(50),
                   bottomLeft: Radius.circular(50),
                 ),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     offset: Offset(0,5),
                     blurRadius: 50,
@@ -83,11 +81,11 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.yellow,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: kPadding/4,
                       ),
                       RichText(
@@ -96,17 +94,14 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                             children: [
                               TextSpan(
                                 text: '${widget.rating}/',
-                                style: GoogleFonts.nunitoSans(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: Theme.of(context).textTheme.headlineMedium
                               ),
                               TextSpan(
                                 text: '10\n',
-                                style: Theme.of(context).textTheme.labelSmall,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               TextSpan(
-                                text: '${widget.numOfRating}',
+                                text: '${widget.numOfRating} votes',
                                 style: GoogleFonts.nunitoSans(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w600,
@@ -117,49 +112,49 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                       ),
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      MaterialButton(
-                        onPressed: () {
-                          setState(() {
-                            icon = (icon.icon == Icons.star_border_outlined) ? Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            ) : Icon(
-                              Icons.star_border_outlined,
-                              color: Theme.of(context).primaryColor,
-                            );
-                          });
-                        },
-                        child: icon,
-                      ),
-                      SizedBox(
-                        height: kPadding/4,
-                      ),
-                      Text(
-                        'Rate This',
-                        style: Theme.of(context).textTheme.labelSmall
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     MaterialButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           icon = (icon.icon == Icons.star_border_outlined) ? const Icon(
+                  //             Icons.star,
+                  //             color: Colors.yellow,
+                  //           ) : Icon(
+                  //             Icons.star_border_outlined,
+                  //             color: Theme.of(context).primaryColor,
+                  //           );
+                  //         });
+                  //       },
+                  //       child: icon,
+                  //     ),
+                  //     const SizedBox(
+                  //       height: kPadding/4,
+                  //     ),
+                  //     Text(
+                  //       'Rate This',
+                  //       style: Theme.of(context).textTheme.titleSmall
+                  //     ),
+                  //   ],
+                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(6),
                         decoration: BoxDecoration(
-                          color: Color(0xff51cf66),
+                          color: const Color(0xff51cf66),
                           borderRadius: BorderRadius.circular(2),
                         ),
                         child: Text(
-                          '${widget.metaScoreRating}',
+                          widget.metaScoreRating,
                           style: GoogleFonts.nunitoSans(
                             color: Colors.white,
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: kPadding/4,
                       ),
                       RichText(
@@ -169,9 +164,7 @@ class _backDropAndRatingState extends State<backDropAndRating> {
                             children: [
                               TextSpan(
                                 text: 'Metascore\n',
-                                style: GoogleFonts.nunitoSans(
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: Theme.of(context).textTheme.titleSmall
                               ),
                               TextSpan(
                                 text: '${widget.criticsReview} critic reviews',
@@ -189,7 +182,7 @@ class _backDropAndRatingState extends State<backDropAndRating> {
               ),
             ),
           ),
-          SafeArea(
+          const SafeArea(
             child: BackButton(
               color: Colors.white,
             ),

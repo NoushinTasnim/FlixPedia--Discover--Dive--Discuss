@@ -27,6 +27,8 @@ dependencies:
   motion_toast: ^2.7.9
   flutter_spinkit: ^5.2.0
   animated_text_kit: ^4.2.2
+  liquid_progress_indicator_v2: ^0.5.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,3 @@
-import 'package:flix_pedia/model/movie_model.dart';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/view/widgets/movie_screen/cast_crew.dart';
 import 'package:flix_pedia/view/widgets/movie_screen/similar_content.dart';
@@ -25,7 +24,7 @@ class DetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            backDropAndRating(
+            BackDropAndRating(
               size: size,
               backDrop: content.backdrop,
               rating: content.rating.toString(),
@@ -34,21 +33,22 @@ class DetailsScreen extends StatelessWidget {
               criticsReview: content.criticsReview.toString(),
             ),
             TitleDurationFab(
+              genre: content.genre,
               title: content.title,
               id: content.id,
               text: 'movie',
-              text2: 'Runtime: ' + content.runtime + " min",
-              year: "Released on: " + content.year.toString(),
+              text2: "Runtime: ${content.runtime} min",
+              year: "Released on: ${content.year}",
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: kPadding/2, horizontal: kPadding),
+              padding: const EdgeInsets.symmetric(vertical: kPadding/2, horizontal: kPadding),
               child: Text(
                 'Plot Summary',
                 style: Theme.of(context).textTheme.bodyMedium
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: kPadding),
+              padding: const EdgeInsets.symmetric(horizontal: kPadding),
               child: Text(
                 '${content.plot}',
                 style: Theme.of(context).textTheme.titleSmall,

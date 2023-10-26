@@ -2,7 +2,6 @@ import 'package:flix_pedia/model/my_theme_model.dart';
 import 'package:flix_pedia/routes/app_routes.dart';
 import 'package:flix_pedia/user_auth/auth_checker.dart';
 import 'package:flix_pedia/utils/constants/spacing_constants.dart';
-import 'package:flix_pedia/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/auth_user.dart';
@@ -37,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: FetchPixels.getPixelHeight(kPadding * 2)),
               Text(
                 'Theme',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               SizedBox(height: FetchPixels.getPixelHeight(kPadding / 2)),
               Consumer<MyThemeModel>(
@@ -45,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: FetchPixels.getPixelHeight(kPadding)),
               Text(
                 'Profile',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               SizedBox(height: FetchPixels.getPixelHeight(kPadding / 2)),
               getCurrentUser()!=null ?
@@ -72,12 +71,12 @@ class ProfileScreen extends StatelessWidget {
                       Icon(
                         Icons.person_add,
                         size: FetchPixels.getScale() * 24,
-                        color: Theme.of(context).textTheme.labelSmall?.color,
+                        color: Theme.of(context).textTheme.titleSmall?.color,
                       ),
                       SizedBox(width: FetchPixels.getPixelWidth(kPadding)),
                       Text(
                         'Create Account',
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
                   ),

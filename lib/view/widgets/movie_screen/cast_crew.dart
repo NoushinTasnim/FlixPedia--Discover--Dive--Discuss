@@ -1,8 +1,6 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/constants/spacing_constants.dart';
 import 'cast_card.dart';
 
 class CastAndCrew extends StatelessWidget {
@@ -17,7 +15,7 @@ class CastAndCrew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(kPadding),
+      padding: const EdgeInsets.all(kPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,7 +23,7 @@ class CastAndCrew extends StatelessWidget {
             'Cast & Crew',
               style: Theme.of(context).textTheme.bodyMedium
           ),
-          SizedBox(
+          const SizedBox(
             height: kPadding,
           ),
           SizedBox(

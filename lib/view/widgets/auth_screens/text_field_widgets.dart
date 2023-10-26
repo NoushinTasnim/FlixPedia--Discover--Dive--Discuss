@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  IconData iconData;
-  String text;
+  final IconData iconData;
+  final String text;
   final bool obscureText;
-  TextEditingController textInputController;
-  String errorText;
+  final TextEditingController textInputController;
+  final String errorText;
 
-  TextFieldWidget({
-    Key? key,
+  const TextFieldWidget({super.key,
     required this.text,
     required this.iconData,
     this.obscureText = false,
@@ -27,18 +26,18 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   Widget build(BuildContext context) {
     bool hasError = widget.errorText.isNotEmpty;
     return TextField(
-      style: Theme.of(context).textTheme.titleSmall,
-      cursorColor: Colors.black,
+      style: Theme.of(context).textTheme.bodySmall,
+      cursorColor: Theme.of(context).cardColor,
       controller: widget.textInputController,
       obscureText: widget.obscureText ? !_isPasswordVisible : false,
       decoration: InputDecoration(
         labelText: widget.text,
-        labelStyle: Theme.of(context).textTheme.bodySmall,
+        labelStyle: Theme.of(context).textTheme.labelSmall,
         filled: true,
-        fillColor: Colors.white54,
+        fillColor: Theme.of(context).canvasColor.withOpacity(0.45),
         prefixIcon: Icon(
           widget.iconData,
-          color: Colors.black54,
+          color: Theme.of(context).cardColor,
           size: 20,
         ),
         suffixIcon: widget.obscureText
@@ -56,11 +55,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         )
             : null,
         hintText: widget.text,
+        hintStyle: Theme.of(context).textTheme.titleSmall,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red), // Set the error border color to red
+          borderSide: const BorderSide(color: Colors.red), // Set the error border color to red
           borderRadius: BorderRadius.circular(10),
         ),
       ),

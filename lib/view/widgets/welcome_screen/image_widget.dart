@@ -19,7 +19,7 @@ class WelcomeScreenImage extends StatelessWidget {
               vertical: FetchPixels.getPixelHeight(kPadding),
             ),
             child: Image(
-              image: theme.isLightTheme ? AssetImage('assets/images/movie.png') : AssetImage('assets/images/dark_movie.png'),
+              image: theme.isLightTheme ? const AssetImage('assets/images/movie.png') : const AssetImage('assets/images/dark_movie.png'),
             ),
           )
     );

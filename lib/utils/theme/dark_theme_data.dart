@@ -7,13 +7,13 @@ ThemeData darkThemeData(BuildContext context) {
     hoverColor: Colors.black,
     canvasColor: kDarkPrimaryColor,
     primaryColor: kDarkSecondaryColor,
-    dividerColor: kDarkTextLightColor,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    dividerColor: kDarkSecondaryColor,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: kDarkBottomNavColor,
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: kDarkPrimaryColor.withOpacity(0.0),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
           color: kDarkSecondaryColor
       ),
       elevation: 0,
@@ -23,66 +23,72 @@ ThemeData darkThemeData(BuildContext context) {
           fontWeight: FontWeight.bold
       ),
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
         color: Colors.white
     ),
     textTheme: GoogleFonts.robotoTextTheme().copyWith(
-      headlineSmall: TextStyle(
-          color: kDarkSecondaryColor,
-          fontSize: 12
+      labelLarge: const TextStyle(
+        color: kDarkTextLightColor,
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        letterSpacing: -0.12,
       ),
-      headlineMedium: TextStyle(
-          color: kDarkSecondaryColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w600
-      ),
-      headlineLarge: TextStyle(
-          color: Colors.white,
-          fontSize: 24,
-          fontWeight: FontWeight.w600
-      ),
-      titleLarge: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: 24
-      ),
-      titleMedium: TextStyle(
+
+      titleMedium: const TextStyle(
         color: kDarkSecondaryColor,
         fontSize: 28,
         fontWeight: FontWeight.bold,
         letterSpacing: -0.12,
       ),
-      titleSmall: TextStyle(
-        color: kDarkSecondaryColor,
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
+
+      headlineLarge: const TextStyle(
+          color: Colors.white,
+          fontSize: 24,
+          fontWeight: FontWeight.w600
       ),
-      labelLarge: TextStyle(
-        color: kDarkSecondaryColor,
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-        letterSpacing: -0.12,
+      titleLarge: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
+          fontSize: 24
       ),
-      labelMedium: TextStyle(
-        color: kDarkTextColor,
-        fontSize: 20,
-      ),
-      labelSmall: TextStyle(
-        color:  Colors.white,
-        fontSize: 14,
-      ),
-      bodyLarge: TextStyle(
+      bodyLarge: const TextStyle(
           color: kDarkSecondaryColor,
           fontSize: 24,
           fontWeight: FontWeight.w600
       ),
-      bodyMedium: TextStyle(
-        color: kDarkSecondaryColor,
+
+      bodyMedium: const TextStyle(
+        color: kDarkTextLightColor,
         fontSize: 20,
       ),
-      bodySmall: TextStyle(
-        color: kDarkTextLightColor,
+      labelMedium: const TextStyle(
+        color: kDarkTextColor,
+        fontSize: 20,
+      ),
+
+      headlineMedium: const TextStyle(
+          color: kDarkSecondaryColor,
+          fontSize: 16,
+          fontWeight: FontWeight.w600
+      ),
+
+      titleSmall: const TextStyle(
+        color: kDarkBottomNavColor,
         fontSize: 14,
+        fontWeight: FontWeight.w400,
+      ),
+      labelSmall: const TextStyle(
+        color:  Colors.white,
+        fontSize: 14,
+      ),
+      bodySmall: const TextStyle(
+        color: kDarkSecondaryColor,
+        fontSize: 14,
+        fontWeight: FontWeight.w700
+      ),
+      headlineSmall: const TextStyle(
+          color: kDarkSecondaryColor,
+          fontSize: 12
       ),
     ),
   );

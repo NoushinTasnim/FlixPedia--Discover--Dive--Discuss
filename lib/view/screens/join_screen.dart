@@ -1,19 +1,14 @@
-import 'package:flix_pedia/view/screens/home_screen.dart';
-import 'package:flix_pedia/view/screens/login_screen.dart';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flix_pedia/view/widgets/auth_screens/alternate_auth_question.dart';
 import 'package:flix_pedia/view/widgets/auth_screens/auth_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import '../../model/auth_user.dart';
 import '../../routes/app_routes.dart';
 import '../../user_auth/auth_checker.dart';
 import '../../user_auth/authentication_factory.dart';
 import '../../user_auth/strategy/authentication_strategy.dart';
 import '../../observers/error_observer.dart';
-import '../../model/auth_result.dart';
 import '../../utils/constants/spacing_constants.dart';
 import '../../utils/widget_utils.dart';
 import '../widgets/commons/purple_bg_button_large.dart';
@@ -89,7 +84,7 @@ class _JoinScreenState extends State<JoinScreen> {
                 ),
                 TextInputFiledsWidget(emailController: emailController, passwordController: passwordController, userController: userController,),
                 ErrorTextWidget(errorMsg: errorObserver.getError()),
-                SizedBox(
+                const SizedBox(
                   height: kPadding,
                 ),
                 PurpleBackgroundButtonLarge(
@@ -101,7 +96,7 @@ class _JoinScreenState extends State<JoinScreen> {
                 SizedBox(
                   height: FetchPixels.getPixelHeight(kPadding*2),
                 ),
-                AuthDividerWidget(),
+                const AuthDividerWidget(),
                 SizedBox(
                   height: FetchPixels.getPixelHeight(kPadding),
                 ),
@@ -112,12 +107,14 @@ class _JoinScreenState extends State<JoinScreen> {
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: FetchPixels.getPixelWidth(kPadding),
-                        vertical: FetchPixels.getPixelHeight(kPadding),
+                        horizontal: FetchPixels.getPixelWidth(kPadding/1.5),
+                        vertical: FetchPixels.getPixelHeight(kPadding/1.5),
                       ),
                       decoration: kBoxDecorationWhiteBackground,
                       child: SvgPicture.asset(
                         'assets/icons/google.svg',
+                        height: FetchPixels.getPixelHeight(30),
+                        width: FetchPixels.getPixelWidth(30),
                       ),
                     ),
                   ),
@@ -139,7 +136,7 @@ class _JoinScreenState extends State<JoinScreen> {
                   alignment: Alignment.bottomRight,
                   child: TextButton(
                     onPressed: () {  
-                      Constant.replaceScreen(Routes.homeScreenRoute, context);
+                      Constant.replaceScreen(Routes.loadingScreenRoute, context);
                     }, 
                     child: Text(
                       'Skip Now',

@@ -1,7 +1,6 @@
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants/color_constants.dart';
 
 class AlternateAuthWidget extends StatelessWidget {
 
@@ -9,7 +8,7 @@ class AlternateAuthWidget extends StatelessWidget {
   final text2;
   final onTap;
 
-  AlternateAuthWidget({
+  const AlternateAuthWidget({
     super.key,
     required this.text1,
     required this.text2,

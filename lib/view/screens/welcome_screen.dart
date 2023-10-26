@@ -2,7 +2,6 @@ import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/view/widgets/welcome_screen/image_widget.dart';
 import 'package:flix_pedia/view/widgets/welcome_screen/text_widgets.dart';
 import 'package:flutter/material.dart';
-import '../../utils/constants/spacing_constants.dart';
 import '../../utils/constants/string_constants.dart';
 import '../../utils/resizer/fetch_pixels.dart';
 import '../../utils/widget_utils.dart';
@@ -25,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
             vertical: FetchPixels.getPixelHeight(kPadding),
           ),
           decoration: kBoxBackgroundDecoration,
-          child: Center(
+          child: const Center(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

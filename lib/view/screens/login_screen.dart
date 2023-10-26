@@ -53,7 +53,6 @@ class _LoginScreenState extends State<LoginScreen> {
       authUser.setEmail(user?.email ?? 'Email');
       authUser.setPhotoUrl(user?.photoURL ?? '');
       authUser.setAuthenticationStrategy(authStrategy);
-      print('email : ${authUser.username} ${authUser.email} ${authUser.photoUrl} ');
       Constant.replaceScreen(Routes.homeScreenRoute, context);
     } else {
       setState(() {
@@ -122,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: FetchPixels.getPixelHeight(kPadding*2),
                 ),
-                AuthDividerWidget(),
+                const AuthDividerWidget(),
                 SizedBox(
                   height: FetchPixels.getPixelHeight(kPadding),
                 ),
@@ -133,8 +132,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: FetchPixels.getPixelWidth(kPadding),
-                        vertical: FetchPixels.getPixelHeight(kPadding),
+                        horizontal: FetchPixels.getPixelWidth(kPadding/1.5),
+                        vertical: FetchPixels.getPixelHeight(kPadding/1.5),
                       ),
                       decoration: kBoxDecorationWhiteBackground,
                       child: SvgPicture.asset(
@@ -157,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.bottomRight,
                   child: TextButton(
                     onPressed: () {
-                      Constant.replaceScreen(Routes.homeScreenRoute, context);
+                      Constant.replaceScreen(Routes.loadingScreenRoute, context);
                     },
                     child: Text(
                       'Skip Now',

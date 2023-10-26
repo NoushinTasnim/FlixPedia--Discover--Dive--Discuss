@@ -1,8 +1,8 @@
+import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
+import 'package:flix_pedia/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/constants/color_constants.dart';
-import '../../../utils/constants/spacing_constants.dart';
 
 class TitleDurationFab extends StatefulWidget {
   const TitleDurationFab({
@@ -11,9 +11,11 @@ class TitleDurationFab extends StatefulWidget {
     required this.id,
     required this.text,
     required this.text2,
+    required this.genre,
   });
 
   final String title;
+  final List<String> genre;
   final String year;
   final int id;
   final String text;
@@ -30,16 +32,17 @@ class _TitleDurationFabState extends State<TitleDurationFab> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Theme.of(context).canvasColor,
-        content: Text('No video is available for this content'),
-        duration: Duration(seconds: 3),
+        content: const Text('No video is available for this content'),
+        duration: const Duration(seconds: 3),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    FetchPixels(context);
     return Padding(
-      padding: EdgeInsets.all(kPadding),
+      padding: const EdgeInsets.all(kPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,12 +51,40 @@ class _TitleDurationFabState extends State<TitleDurationFab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  clipBehavior: Clip.none,
+                  child: Row(
+                    children: widget.genre.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final genreName = widget.genre[index];
+                      return Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: FetchPixels.getPixelWidth(kPadding/4),
+                            vertical: FetchPixels.getPixelHeight(kPadding)
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: FetchPixels.getPixelWidth(kPadding/2),
+                          vertical: FetchPixels.getPixelHeight(kPadding/4)
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(FetchPixels.getPixelWidth(20.0)),
+                        ),
+                        child: Text(
+                          genreName,
+                          style: Theme.of(context).textTheme.labelSmall
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
                 Text(
                   widget.title,
                   style: Theme.of(context).textTheme.labelLarge,
                   textAlign: TextAlign.start,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: kPadding/2,
                 ),
                 Text(
@@ -86,7 +117,7 @@ class _TitleDurationFabState extends State<TitleDurationFab> {
               },
               color: Theme.of(context).primaryColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              child: Icon(
+              child: const Icon(
                 Icons.play_arrow,
                 size: 28,
                 color: Colors.white,
