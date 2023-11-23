@@ -14,6 +14,7 @@ class CastAndCrew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(casts);
     return Padding(
       padding: const EdgeInsets.all(kPadding),
       child: Column(

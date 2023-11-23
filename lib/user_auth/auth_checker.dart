@@ -27,8 +27,8 @@ void saveData(User user, BuildContext context, AuthenticationStrategy authStrate
   AuthUser authUser = Provider.of<AuthUser>(context, listen: false);
 
   // Set the values in AuthUser
-  authUser.setUsername(user?.displayName ?? 'User');
-  authUser.setEmail(user?.email ?? 'Email');
-  authUser.setPhotoUrl(user?.photoURL ?? '');
+  authUser.setUsername(user.displayName ?? 'User');
+  authUser.setEmail(user.email ?? 'Email');
+  authUser.setPhotoUrl(user.photoURL ?? '');
   authUser.setAuthenticationStrategy(authStrategy);
 }

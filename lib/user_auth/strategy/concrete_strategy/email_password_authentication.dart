@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../observers/error_observer.dart';
-import '../../auth_checker.dart';
 import '../../auth_exception_handler.dart';
 import '../../../model/auth_result.dart';
 import '../authentication_strategy.dart';
@@ -59,8 +57,6 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
       await user?.reload();
 
       User? latestUser = FirebaseAuth.instance.currentUser;
-      print('${latestUser?.displayName}');
-      print(userCredential.user);
       // saveUser(email, password);
       return AuthResult(user: latestUser, errorMessage: null);
     } on FirebaseAuthException catch (e) {
@@ -123,7 +119,6 @@ class EmailPasswordAuthentication implements AuthenticationStrategy{
       password: password,
     );
     User user = userCredential.user!;
-    print(user);
     // saveData(user, context, EmailPasswordAuthentication(user.displayName!=null ? user.displayName! : 'aa', email, password));
   }
 }

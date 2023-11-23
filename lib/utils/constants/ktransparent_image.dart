@@ -1,5 +1,3 @@
-library transparent_image;
-
 import 'dart:typed_data';
 
 final Uint8List kTransparentImage = Uint8List.fromList(<int>[

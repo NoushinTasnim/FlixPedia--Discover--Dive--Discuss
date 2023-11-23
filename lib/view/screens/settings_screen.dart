@@ -7,12 +7,11 @@ import 'package:provider/provider.dart';
 import '../../model/auth_user.dart';
 import '../../utils/constants/color_constants.dart';
 import '../../utils/resizer/fetch_pixels.dart';
-import '../widgets/commons/app_bar.dart';
-import '../widgets/profile_screen/build_profile_settings_widget.dart';
-import '../widgets/profile_screen/build_theme_settings.dart';
-import '../widgets/profile_screen/build_user_email_widget.dart';
-import '../widgets/profile_screen/build_user_profile_image_widget.dart';
-import '../widgets/profile_screen/build_username_widget.dart';
+import '../widgets/settings_screen/build_profile_settings_widget.dart';
+import '../widgets/settings_screen/build_theme_settings.dart';
+import '../widgets/settings_screen/build_user_email_widget.dart';
+import '../widgets/settings_screen/build_user_profile_image_widget.dart';
+import '../widgets/settings_screen/build_username_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -22,7 +21,12 @@ class ProfileScreen extends StatelessWidget {
     FetchPixels(context);
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: buildAppBar(context, "My Profile"),
+      appBar: AppBar(
+        title: Text(
+          'Settings',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+      ),
       body: Consumer<AuthUser>(
         builder: (context, authUser, child) => SingleChildScrollView(
           child: Column(

@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/constants/color_constants.dart';
-import 'details_screen.dart';
+import '../../screens/details_screen.dart';
 import 'movie_image.dart';
 import 'movie_rating.dart';
 import 'movie_title.dart';

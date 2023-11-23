@@ -2,23 +2,20 @@ import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../firestore/firestore_repository_movies.dart';
+import '../../../firestore/firestore_reposity_series.dart';
+import '../../../model/movie_model.dart';
+import '../../../model/series_model.dart';
+
 class BackDropAndRating extends StatefulWidget {
   const BackDropAndRating({
     super.key,
     required this.size,
-    required this.backDrop,
-    required this.rating,
-    required this.numOfRating,
-    required this.metaScoreRating,
-    required this.criticsReview,
+    required this.content
   });
 
   final Size size;
-  final String backDrop;
-  final String rating;
-  final String numOfRating;
-  final String metaScoreRating;
-  final String criticsReview;
+  final content;
 
   @override
   State<BackDropAndRating> createState() => _BackDropAndRatingState();
@@ -26,12 +23,29 @@ class BackDropAndRating extends StatefulWidget {
 
 class _BackDropAndRatingState extends State<BackDropAndRating> {
 
+  bool isAddedToFav = false;
+  var contentRepository;
+
+  callAPI() async {
+    bool ans = await contentRepository.isAlreadyFavourite(widget.content);
+    setState(() {
+      isAddedToFav = ans;
+    });
+  }
+  @override
+  void initState(){
+    super.initState();
+    if (widget.content is Movie) {
+      // print('asas');
+      contentRepository = FirestoreMovieService();
+    } else if (widget.content is Series) {
+      contentRepository = FirestoreSeriesService();
+    }
+    callAPI();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Icon icon = Icon(
-      Icons.star_border_outlined,
-      color: Theme.of(context).primaryColor,
-    );
     return SizedBox(
       height: widget.size.height * 0.4,
       child: Stack(
@@ -43,17 +57,17 @@ class _BackDropAndRatingState extends State<BackDropAndRating> {
                 bottomRight: Radius.circular(50),
                 bottomLeft: Radius.circular(50),
               ),
-              image: widget.backDrop.isNotEmpty
+              image: widget.content.backdrop.isNotEmpty
                   ? DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(widget.backDrop),
+                image: NetworkImage(widget.content.backdrop),
               )
                   : const DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/images/1.jpg'),
               ),
 
-    ),
+              ),
           ),
           Positioned(
             bottom: 0,
@@ -93,7 +107,7 @@ class _BackDropAndRatingState extends State<BackDropAndRating> {
                             style: Theme.of(context).textTheme.labelSmall,
                             children: [
                               TextSpan(
-                                text: '${widget.rating}/',
+                                text: '${widget.content.rating}/',
                                 style: Theme.of(context).textTheme.headlineMedium
                               ),
                               TextSpan(
@@ -101,7 +115,7 @@ class _BackDropAndRatingState extends State<BackDropAndRating> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               TextSpan(
-                                text: '${widget.numOfRating} votes',
+                                text: '${widget.content.numOfRatings} votes',
                                 style: GoogleFonts.nunitoSans(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w600,
@@ -112,32 +126,23 @@ class _BackDropAndRatingState extends State<BackDropAndRating> {
                       ),
                     ],
                   ),
-                  // Column(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     MaterialButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           icon = (icon.icon == Icons.star_border_outlined) ? const Icon(
-                  //             Icons.star,
-                  //             color: Colors.yellow,
-                  //           ) : Icon(
-                  //             Icons.star_border_outlined,
-                  //             color: Theme.of(context).primaryColor,
-                  //           );
-                  //         });
-                  //       },
-                  //       child: icon,
-                  //     ),
-                  //     const SizedBox(
-                  //       height: kPadding/4,
-                  //     ),
-                  //     Text(
-                  //       'Rate This',
-                  //       style: Theme.of(context).textTheme.titleSmall
-                  //     ),
-                  //   ],
-                  // ),
+                  InkWell(
+                    child: Icon(
+                      isAddedToFav==true ? Icons.star : Icons.star_border_outlined,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    onTap: () async {
+                      if(isAddedToFav==true){
+                        await contentRepository.removeFromFavorites(widget.content.id.toString());
+                      }
+                      else{
+                        await contentRepository.addToFavorites(widget.content);
+                      }
+                      setState(() {
+                        isAddedToFav = !isAddedToFav;
+                      });
+                    },
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -148,7 +153,7 @@ class _BackDropAndRatingState extends State<BackDropAndRating> {
                           borderRadius: BorderRadius.circular(2),
                         ),
                         child: Text(
-                          widget.metaScoreRating,
+                          widget.content.metascoreRating.toString(),
                           style: GoogleFonts.nunitoSans(
                             color: Colors.white,
                           ),
@@ -167,7 +172,7 @@ class _BackDropAndRatingState extends State<BackDropAndRating> {
                                 style: Theme.of(context).textTheme.titleSmall
                               ),
                               TextSpan(
-                                text: '${widget.criticsReview} critic reviews',
+                                text: '${widget.content.criticsReview} critic reviews',
                                 style: GoogleFonts.nunitoSans(
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w600,

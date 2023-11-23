@@ -1,5 +1,5 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
-import 'package:flix_pedia/view/widgets/movie_screen/similar_content_card.dart';
+import 'package:flix_pedia/view/widgets/details_screen/similar_content_card.dart';
 import 'package:flutter/material.dart';
 
 
@@ -27,14 +27,13 @@ class SimilarContent extends StatelessWidget {
             height: kPadding,
           ),
           SizedBox(
-            height: 250,
+            height: 300,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: similarContent.length,
               itemBuilder: (context, index) => SimilarContentCard(
                 image: similarContent[index]['poster'],
                 name: similarContent[index]['title'],
-                character: '',
               ),
             ),
           )

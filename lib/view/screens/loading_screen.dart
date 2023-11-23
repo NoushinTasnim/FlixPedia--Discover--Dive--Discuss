@@ -1,13 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flix_pedia/content/movies/movie_factory.dart';
 import 'package:flix_pedia/routes/app_routes.dart';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/constants/spacing_constants.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
-import '../../model/movie_model.dart';
-import '../../model/series_model.dart';
+import '../../model/movie_facts.dart';
+import '../../content/series/series_factory.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -27,49 +27,51 @@ class _LoadingScreenState extends State<LoadingScreen> {
   double value = 0.0;
 
   Future<void> callMovieAPIs() async {
-    print(await fetchMovies('https://api.themoviedb.org/3/movie/popular', popularMoviesList));
-    print('objectas');
+    final movieAPI = MovieApi();
+    popularMoviesList = await movieAPI.fetchMovies('popular');
+
     setState(() {
       value = 1/8.0;
     });
-    print(await fetchMovies('https://api.themoviedb.org/3/movie/now_playing', trendingMoviesList));
-    print('objectas');
+
+    topMoviesList = await movieAPI.fetchMovies('top_rated');
     setState(() {
       value = 2/8.0;
     });
-    await fetchMovies('https://api.themoviedb.org/3/movie/top_rated', topMoviesList);
-    print('objectas');
+
+    upcomingMoviesList = await movieAPI.fetchMovies('upcoming');
     setState(() {
       value = 3/8.0;
     });
-    await fetchMovies('https://api.themoviedb.org/3/movie/upcoming', upcomingMoviesList);
+
+    trendingMoviesList = await movieAPI.fetchMovies('now_playing');
     setState(() {
-      value = 4/8.0;
+      value = 0.5;
     });
   }
 
   Future<void> callSeriesAPIs() async {
-    await fetchSeries('https://api.themoviedb.org/3/tv/popular', popularSeriesList);
+    final seriesApi = SeriesApi();
+    popularSeriesList = await seriesApi.fetchSeries('popular');
+
     setState(() {
       value = 5/8.0;
     });
-    print('objectas');
-    await fetchSeries('https://api.themoviedb.org/3/tv/on_the_air', onTheAirSeriesList);
+
+    topSeriesList = await seriesApi.fetchSeries('top_rated');
     setState(() {
       value = 6/8.0;
     });
-    print('objectas');
-    await fetchSeries('https://api.themoviedb.org/3/tv/airing_today', airingNowSeriesList);
+
+    airingNowSeriesList = await seriesApi.fetchSeries('airing_today');
     setState(() {
       value = 7/8.0;
     });
-    print('objectas');
-    await fetchSeries('https://api.themoviedb.org/3/tv/top_rated', topSeriesList);
+
+    onTheAirSeriesList = await seriesApi.fetchSeries('on_the_air');
     setState(() {
       value = 1.0;
     });
-    print('objectas');
-
   }
 
   void getData() async {
@@ -91,16 +93,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Container(
+            child: SizedBox(
               height: 200,
               width: 200,
               child: LiquidCircularProgressIndicator(
-                value: value, // Defaults to 0.5.
-                valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor), // Defaults to the current Theme's accentColor.
-                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1), // Defaults to the current Theme's backgroundColor.
+                value: value,
+                valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
+                backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
                 borderColor: Colors.transparent,
                 borderWidth: 0.0,
-                direction: Axis.vertical, // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.horizontal.
+                direction: Axis.vertical,
                 center: Text(
                     "${value*100} %",
                     style: TextStyle(
@@ -110,10 +112,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
               ),
             ),
           ),
-          // SpinKitChasingDots(
-          //   color: Theme.of(context).primaryColor,
-          //   size: 100.0,
-          // ),
           SizedBox(
             height: FetchPixels.getPixelHeight(kPadding*8),
           ),
@@ -124,12 +122,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
             ),
             child: AnimatedTextKit(
               animatedTexts: [
-                WavyAnimatedText('Please Wait...'),
-                WavyAnimatedText('We are fetching data for you...'),
-                WavyAnimatedText('It takes some time...'),
-                WavyAnimatedText('We appreciate your patience...'),
-                WavyAnimatedText('Hold on for a bit...'),
-                WavyAnimatedText('A few more seconds...'),
+                for (String text in movieFacts)
+                  WavyAnimatedText(
+                    text,
+                    speed: Duration(milliseconds: 100)
+                  ),
               ],
               isRepeatingAnimation: true,
               repeatForever: true,

@@ -1,9 +1,10 @@
 import 'package:flix_pedia/model/series_model.dart';
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
+import '../../content/series/series_factory.dart';
 import '../../utils/resizer/fetch_pixels.dart';
 import '../widgets/commons/app_bar.dart';
-import '../widgets/commons/build_carousel_section.dart';
+import '../widgets/content_carousel_screen/build_carousel_section.dart';
 import '../widgets/genres.dart';
 
 class SeriesHomeScreen extends StatelessWidget {

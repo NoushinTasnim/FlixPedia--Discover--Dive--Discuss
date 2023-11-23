@@ -20,12 +20,11 @@ class PurpleBackgroundButtonSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        final FirebaseAuth _auth = FirebaseAuth.instance;
-        User? user = _auth.currentUser;
-        print(user);
+        final FirebaseAuth auth = FirebaseAuth.instance;
+        User? user = auth.currentUser;
 
-        saveData(user!, context, GoogleAuthentication());
         if(user!=null){
+          saveData(user, context, GoogleAuthentication());
           Constant.replaceScreen(Routes.loadingScreenRoute, context);
         }
         else{

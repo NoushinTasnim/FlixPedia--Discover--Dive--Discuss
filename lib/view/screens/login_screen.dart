@@ -158,9 +158,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Constant.replaceScreen(Routes.loadingScreenRoute, context);
                     },
-                    child: Text(
-                      'Skip Now',
-                      style: Theme.of(context).textTheme.labelSmall,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Skip Now',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        const Icon(
+                          Icons.navigate_next,
+                          color: kSecondaryColor,
+                        )
+                      ],
                     ),
                   ),
                 )

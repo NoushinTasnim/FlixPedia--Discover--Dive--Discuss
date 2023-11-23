@@ -9,12 +9,10 @@ class SimilarContentCard extends StatelessWidget {
     super.key,
     required this.image,
     required this.name,
-    required this.character,
   });
 
   final String image;
   final String name;
-  final String character;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +54,7 @@ class SimilarContentCard extends StatelessWidget {
           Text(
             name,
             style: Theme.of(context).textTheme.titleSmall
-          ),
-          const SizedBox(
-            height: kPadding/4,
-          ),
-          Text(
-            character,
-            style: Theme.of(context).textTheme.labelSmall
-          ),
+          )
         ],
       ),
     );

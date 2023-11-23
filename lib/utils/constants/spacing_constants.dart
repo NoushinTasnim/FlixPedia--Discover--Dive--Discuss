@@ -12,10 +12,6 @@ class Constant {
     Get.back();
   }
 
-  static getCurrency(BuildContext context) {
-    return "ETH";
-  }
-
   static sendToNext(BuildContext context, String route, {Object? arguments}) {
     if (arguments != null) {
       Navigator.pushNamed(context, route, arguments: arguments);

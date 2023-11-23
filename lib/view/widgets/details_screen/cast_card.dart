@@ -1,7 +1,7 @@
 import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../utils/transparent_image.dart';
+import '../../../utils/constants/ktransparent_image.dart';
 
 class CastCard extends StatelessWidget {
   const CastCard({

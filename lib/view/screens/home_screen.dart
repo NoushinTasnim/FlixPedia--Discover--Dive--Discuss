@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:flix_pedia/view/screens/profile_screen.dart';
+import 'package:flix_pedia/view/screens/favourites_screen.dart';
 import 'package:flix_pedia/view/screens/series_home_screen.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +18,8 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> pageList = <Widget>[
     MovieHomeScreen(),
+    const FavouritesScreen(),
     SeriesHomeScreen(),
-    const ProfileScreen(),
   ];
 
   @override
@@ -43,8 +43,8 @@ class _MainScreenState extends State<MainScreen> {
           scaleFactor: 2,
           icons: [
             FluidNavBarIcon(icon: Icons.movie),
+            FluidNavBarIcon(icon: Icons.star),
             FluidNavBarIcon(icon: Icons.local_movies),
-            FluidNavBarIcon(icon: Icons.person),
           ],
           onChange: (value){
             setState(() {

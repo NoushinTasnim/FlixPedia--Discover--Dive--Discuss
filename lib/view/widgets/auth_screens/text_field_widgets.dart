@@ -32,7 +32,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       obscureText: widget.obscureText ? !_isPasswordVisible : false,
       decoration: InputDecoration(
         labelText: widget.text,
-        labelStyle: Theme.of(context).textTheme.labelSmall,
+        labelStyle: Theme.of(context).textTheme.bodySmall,
         filled: true,
         fillColor: Theme.of(context).canvasColor.withOpacity(0.45),
         prefixIcon: Icon(

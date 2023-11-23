@@ -3,7 +3,8 @@ import 'package:flix_pedia/utils/constants/color_constants.dart';
 import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 import 'package:flix_pedia/view/widgets/commons/app_bar.dart';
-import '../widgets/commons/build_carousel_section.dart';
+import '../../content/movies/movie_factory.dart';
+import '../widgets/content_carousel_screen/build_carousel_section.dart';
 import '../widgets/genres.dart';
 
 class MovieHomeScreen extends StatelessWidget {

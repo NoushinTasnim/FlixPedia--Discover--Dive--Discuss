@@ -2,7 +2,7 @@ import 'package:flix_pedia/utils/resizer/fetch_pixels.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/color_constants.dart';
-import '../movie_screen/carousel.dart';
+import 'carousel.dart';
 
 Widget buildCarouselSection(BuildContext context, String title, var contentList) {
   FetchPixels(context);

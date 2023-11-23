@@ -14,18 +14,13 @@ class MyThemeModel extends ChangeNotifier{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     await prefs.setBool('isLightMode', _isLightTheme);
-    print(prefs.getBool('isLightMode'));
 
     notifyListeners();
   }
 
   Future<void> loadThemeFromPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    print('theme');
-    print(prefs.getBool('isLightMode'));
-    print('dd');
     _isLightTheme = prefs.getBool('isLightMode') ?? true;
-    print(_isLightTheme);
     notifyListeners();
   }
 

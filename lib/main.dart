@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flix_pedia/firebase_options.dart';
 import 'package:flix_pedia/model/auth_user.dart';
@@ -28,8 +27,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print('ggg ');
-    print(MyThemeModel().isLightTheme);
     AuthenticationStrategyFactory authenticationStrategyFactory = AuthenticationStrategyFactory();
     authenticationStrategyFactory.getLogIn(context);
     return ChangeNotifierProvider(
