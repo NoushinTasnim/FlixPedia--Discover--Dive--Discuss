@@ -1,8 +1,14 @@
 <h1>Flixpedia</h1>
+<p align="center">
+  <img src="https://github.com/NoushinTasnim/FlixPedia--Discover--Dive--Discuss/blob/main/flix.jpg" alt="App Screenshot" width="1000" />
+</p>
 <h2>Overview</h2>
 <p>Flixpedia is a movie app developed using Flutter for my Software and Design Pattern Lab project. The app offers a rich set of features to enhance user experience, including user authentication, comprehensive movie and series content details, favorite lists, and more. It also implements various design patterns to ensure a scalable and maintainable codebase.</p>
 
 <h2>Features</h2>
+<p align="center">
+  <img src="https://github.com/NoushinTasnim/FlixPedia--Discover--Dive--Discuss/blob/main/flix2.jpg" alt="App Screenshot" width="1000" />
+</p>
 <h3>User Authentication</h3>
 <ul>
         <li>Sign up user (Google/email and password)</li>
@@ -28,7 +34,9 @@
         <li>Similar Contents</li>
         <li>Related Videos (teaser, trailer, scenes, etc.)</li>
 </ul>
-
+<p align="center">
+  <img src="https://github.com/NoushinTasnim/FlixPedia--Discover--Dive--Discuss/blob/main/flix3.png" alt="App Screenshot" width="1000" />
+</p>
 <h3>Additional Features</h3>
 <ul>
         <li>Favourites (add, remove, view)</li>
@@ -62,10 +70,6 @@
 <p>Watch the video demo of Flixpedia <a href="https://www.youtube.com/watch?v=YMa7_mABteE" target="_blank">here</a>.</p>
 
 <h2>Class Diagram</h2>
-<p>View the complete UML class diagram <a href="https://tinyurl.com/completeumldiagram" target="_blank">here</a>.</p>
-
-<h2>Group Members</h2>
-<ul>
-        <li>Hasib Rayhan Dewan Akash (Roll-08)</li>
-        <li>Noushin Tasnim (Roll-14)</li>
-</ul>
+<p align="center">
+  <img src="https://github.com/NoushinTasnim/FlixPedia--Discover--Dive--Discuss/blob/main/all.png" alt="App Screenshot" width="1000" />
+</p>
