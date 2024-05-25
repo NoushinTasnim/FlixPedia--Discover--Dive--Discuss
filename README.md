@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flixpedia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        ul {
-            list-style-type: disc;
-            margin: 0;
-            padding: 0;
-            padding-left: 20px;
-        }
-        a {
-            color: #1e90ff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        pre {
-            background: #333;
-            color: #fff;
-            padding: 10px;
-            overflow: auto;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Flixpedia</h1>
+<h1>Flixpedia</h1>
 
     <h2>Overview</h2>
     <p>Flixpedia is a movie app developed using Flutter for my Software and Design Pattern Lab project. The app offers a rich set of features to enhance user experience, including user authentication, comprehensive movie and series content details, favorite lists, and more. It also implements various design patterns to ensure a scalable and maintainable codebase.</p>
@@ -110,6 +70,3 @@
         <li>Hasib Rayhan Dewan Akash (Roll-08)</li>
         <li>Noushin Tasnim (Roll-14)</li>
     </ul>
-
-</body>
-</html>
