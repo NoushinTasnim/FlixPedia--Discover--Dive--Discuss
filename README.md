@@ -71,5 +71,5 @@
 
 <h2>Class Diagram</h2>
 <p align="center">
-  <img src="https://github.com/NoushinTasnim/FlixPedia--Discover--Dive--Discuss/blob/main/all.png" alt="App Screenshot" width="1000" />
+  <img src="https://github.com/NoushinTasnim/FlixPedia--Discover--Dive--Discuss/blob/main/all.jpg" alt="App Screenshot" width="1000" />
 </p>
